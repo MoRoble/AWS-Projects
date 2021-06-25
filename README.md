@@ -9,4 +9,4 @@ I will be demonstrating some projects that I have successfully implemented on pr
 
 For 1-Click deployment I will use AWS CloudFormation (CFN) to simplify provisioning infrastructure and management on AWS as well as to create templates for the services or application architectures you want to have on AWS.
 
-Hodan is a small town I was born and raised and the school was in the town centre.
+Hodan is a small town I was born, raised and the school was in the town centre.
