@@ -4,6 +4,7 @@ As part of our AWS Projects here I am going to post a project that I have done f
 
 Following architecture explains how our web server is being accessed in either public or private users
 
-![Route 53 - Web Server](https://github.com/MoRoble/AWS-Projects/blob/2f3544dca85ade1d97196cde59c1fdc95fffbf1a/Amazon-Route53/Web-Server%20-%20R53%20(1).jpg)
+![Route 53 - Web Server](https://github.com/MoRoble/AWS-Projects/blob/051de45fc64f997be4ef0966294df1a5475ef904/Amazon-Route53/Web-Server%20-%20R53.jpg)
+
 
 Using split-horizon technique we are able provision web server that is partially being accessed by external users while internal users will be presented intranet.
