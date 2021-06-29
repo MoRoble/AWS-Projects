@@ -1,6 +1,8 @@
 ## Amazon Route-53
 
-As part of our AWS Projects here I am going to post a project that I have done for a client to make sure they have got a backup static website for the cases of their current website outage.
+As part of our AWS Projects here's another usefull project where I will go through the need for Hodan School to route their users accessing public or private resources in a reliable and cost effective way. I have suggested to use Amazon cloud solutions in general and Amazon Route-53 to manage our domains which benefits a fast, flexibility, security, scalability and hybrid cloud.
+
+Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service, it is designed to give developers and businesses to build highly available and reliable infrastructure, and can also be used to route users to infrastructure running in both AWS and outside of AWS.
 
 - [One-Click DNS Deployment](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://roble-files.s3.amazonaws.com/Hodan-Project/R53-failover.yml&stackName=HDN-Domain-Host)
 
