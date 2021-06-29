@@ -19,6 +19,8 @@ To practive this I have created a cloud formation template that provisions the i
 
 - [One-Click DNS Deployment](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://roble-files.s3.amazonaws.com/Hodan-Project/R53-failover.yml&stackName=HDN-Domain-Host)
 
+Ping replies, DNS query replies, control of load balance during peak times, backup and fault tolurance on critical situations are really admire me during this project.
+
 I hope that was informative and I would like to thank you.
 
 
