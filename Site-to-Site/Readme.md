@@ -1,6 +1,6 @@
 ## Site-to-Site VPN connection
 
-I have recently implemented an AWS site-to-site VPN for Hodan School to connect their on-premise network to their newly deployed AWS account.On this project I will be collaborating with Eng. Hamdi, which I believe with her amazing talent will help me to finish it in a fruitful way.
+I have recently implemented an AWS site-to-site VPN for Hodan School to connect their on-premise network to their newly deployed AWS account. On this project I will be collaborating with Eng. Hamdi, which I believe with her amazing talent will help me to finish it in a fruitful way.
 
 AWS Site-to-Site VPN is a fully-managed service that creates a secure connection between your data center or branch office and your AWS resources using IP Security (IPSec) tunnels. We’re going to move applications to the cloud according to Hodan School requirements and AWS S2S VPN connection is an easier enhanced technology to move between your network and the AWS cloud. You can host Amazon VPCs behind your corporate firewall and seamlessly move your IT resources, without changing the way your users access these applications.
 
