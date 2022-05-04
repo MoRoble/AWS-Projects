@@ -10,4 +10,5 @@ Use One-Click Deployment to provision infrastructure
 
 ##### Automatic Build
 I will be using bootstrap to provision MariaDB, WordPress, install EFS, mount EFS file system to WordPress and populate values from AWS Parameter Store.
-then create Load Balancer
+
+Then create Load Balancer
