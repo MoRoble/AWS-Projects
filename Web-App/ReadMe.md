@@ -1,5 +1,5 @@
-#Hodan School Web-Application
-####Skeleton Architecture
+# Hodan School Web-Application
+#### Skeleton Architecture
 Following our project scenario ‘Hodan School’ we are going to implement Web application template using HDN.
 
 Web-App template
