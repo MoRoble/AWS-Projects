@@ -2,6 +2,6 @@ Following our project scenario ‘Hodan School’ we are going to implement Web 
 
 Web-App template
 
-![Hodan School](https://github.com/MoRoble/AWS-Projects/blob/main/Site-to-Site/EFS-S2S-diagram.jpg)
+![Hodan School](https://github.com/MoRoble/AWS-Projects/blob/5c4db3364639e00d867ad703b06bd6147d60d229/Web-App/Web-App.jpeg)
 
 Use One-Click Deployment to provision infrastructure
