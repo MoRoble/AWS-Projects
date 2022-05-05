@@ -1,6 +1,15 @@
 # Hodan School Web-Application
 #### Skeleton Architecture
-Following our project scenario ‘Hodan School’ we are going to implement Web application template using HDN.
+
+Following our project scenario ‘Hodan School’ we are going to implement highly available 3 tier architecture implemented on AWS. We are going to evolve web application WordPress, compute options, load balancing and database services until it's a scalable and resilient architecture.
+
+In their 3 tier architecture applications are organized into three logical tiers: the presentation layer, the business logic layer and the data storage layer. Our web application will be used in a client-server application that has frontend, the backend and the database. The prime drivers for three-tier architecture are:
+
+* Decoupling
+* Independent scalability
+* Separately developed, managed and maintained by different teams
+
+Amazon Web Service (AWS) is a cloud platform that provides different cloud computing services. We shall be using AWS services to design and build a three-tier cloud infrastructure such as EC2, Auto Scalling Group (ASG), VPC and Elastic Load Balancer (ELB) aming to be highly available and fault tolerant.
 
 Web-App template
 
