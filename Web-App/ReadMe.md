@@ -17,7 +17,7 @@ Web-App template
 
 This project consists of different stages, each implementing additional components of the architecture.
 
-Login to an AWS account using a user with admin privileges and ensure your region is set to 'us-east-1' 'N. Virginia'
+Login to an AWS account using a user with admin privileges and ensure your region is set to `us-east-1` `N. Virginia`
 
 Use One-Click Deployment to auto configure the VPC which WordPress will run from
 
