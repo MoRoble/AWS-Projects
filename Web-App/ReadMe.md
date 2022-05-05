@@ -33,6 +33,7 @@ In this stage we will start storing configuration information within the SSM par
 Select AWS System Manager from services then Click on Parameter Store under Application Management on the menu on the left
 
 Create Parameter - DBUser (the login for the specific wordpress DB)
+
 Click `Create Parameter` Set Name to `/HDN/Wordpress/DBUser` Set Description to `Wordpress Database User`
 Set Tier to `Standard`
 Set Type to `String`
@@ -41,15 +42,18 @@ Set Value to `hdnwordpressuser`
 Click `Create parameter`
 
 Create Parameter - DBName (the name of the wordpress database)
+
 Click `Create Parameter` Set Name to `/HDN/Wordpress/DBName` Set Description to `Wordpress Database Name`
 follow same way
 Set Value to `hdnwordpressdb`
 
 Create Parameter - DBEndpoint (the endpoint for the wordpress DB .. )
+
 follow same way
 Set Value to `localhost`
 
 Create Parameter - DBPassword (the password for the DBUser)
+
 Click `Create Parameter` Set Name to `/HDN/Wordpress/DBPassword` Set Description to `Wordpress DB Password`
 Set Tier to `Standard`
 Set Type to `SecureString`
@@ -57,6 +61,7 @@ Set `KMS Key Source` to `My Current Account`
 Leave `KMS Key ID` as default Set `Value` to `h0d4nF1L35` Click `Create parameter`
 
 Create Parameter - DBRootPassword (the password for the database root user, used for self-managed admin)
+
 Click Create Parameter Set Name to /HDN/Wordpress/DBRootPassword Set Description to Wordpress DBRoot Password
 Set Tier to `Standard`
 Set Type to `SecureString`
