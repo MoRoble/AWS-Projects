@@ -38,7 +38,7 @@ Click `Create Parameter` Set Name to `/HDN/Wordpress/DBUser` Set Description to 
 Set Tier to `Standard`
 Set Type to `String`
 Set Data type to `text`
-Set Value to `hdnwordpressuser`
+Set Value to `hdnwordpressuser` 
 Click `Create parameter`
 
 Create Parameter - DBName (the name of the wordpress database)
