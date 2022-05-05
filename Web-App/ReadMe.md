@@ -15,7 +15,15 @@ Web-App template
 
 ![Hodan School](https://github.com/MoRoble/AWS-Projects/blob/5c4db3364639e00d867ad703b06bd6147d60d229/Web-App/Web-App.jpeg)
 
-Use One-Click Deployment to provision infrastructure
+This project consists of different stages, each implementing additional components of the architecture.
+
+Login to an AWS account using a user with admin privileges and ensure your region is set to '''us-east-1''' '''N. Virginia'''
+
+Use One-Click Deployment to auto configure the VPC which WordPress will run from
+
+Wait for the STACK to move into the '''CREATE_COMPLETE''' state before continuing.
+
+Or get this yaml file and upload on your CloudFormation Stack.
 
 ##### Automatic Build
 I will be using bootstrap to provision MariaDB, WordPress, install EFS, mount EFS file system to WordPress and populate values from AWS Parameter Store.
