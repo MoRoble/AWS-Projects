@@ -71,16 +71,16 @@ Leave `KMS Key ID` as default Set `Value` to `h0d4nF1L35` Click `Create paramete
 ##### Create RDS Instance
 In this stage, you are going to provision an RDS instance using the subnet group to control placement within the VPC. Normally you would use multi-az for production, to keep costs low, for now you should use a single AZ as per the instructions below.
 
-Click Databases
-Click Create Database
-Click Standard Create
-Click MySqlunder Engine options
-Under Version select MySQL 5.7.31 (best aurora compatibility for snapshot migrations)
+Click `Databases`
+Click `Create Database
+Click `Standard Create`
+Click `MySql` under `Engine options`
+Under `Version` select `MySQL 5.7.31` (best aurora compatibility for snapshot migrations)
 
-Scroll down and select Free Tier under templates this ensures there will be no costs for the database but it will be single AZ only
+Scroll down and select `Free Tier` under templates this ensures there will be no costs for the database but it will be single AZ only
 
-under Db instance identifier enter hdnWordPress under Master Username enter enter the value from here https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBUser/description?region=us-east-1&tab=Table 
-under Master Password and Confirm Password enter the value from here and confirm https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBPassword/description?region=us-east-1&tab=Table
+under `Db instance identifier` enter `hdnWordPress` under `Master Username` enter enter the value from here https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBUser/description?region=us-east-1&tab=Table 
+under `Master Password` and `Confirm Password` enter the value from here and confirm https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBPassword/description?region=us-east-1&tab=Table
 
 Under DB instance class, then Burstable classes (includes t classes) make sure db.t2.micro is selected
 Scroll down, under Connectivity, Virtual private cloud (VPC) select HDNVPC 
