@@ -82,16 +82,16 @@ Scroll down and select `Free Tier` under templates this ensures there will be no
 under `Db instance identifier` enter `hdnWordPress` under `Master Username` enter enter the value from here https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBUser/description?region=us-east-1&tab=Table 
 under `Master Password` and `Confirm Password` enter the value from here and confirm https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBPassword/description?region=us-east-1&tab=Table
 
-Under DB instance class, then Burstable classes (includes t classes) make sure db.t2.micro is selected
-Scroll down, under Connectivity, Virtual private cloud (VPC) select HDNVPC 
-Subnet group wordpressrdssubnetgroup automatically populated
-Make sure Publicly accessible is set to No
-Under Existing VPC security groups add HDNVPC-SGDatabase and remove Default
-Under Availability Zone set us-east-1a
-Under Database authentication select Password authentication
-Scroll down and expand Additional configuration
-in the Initial database name box enter the value from here https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBName/description?region=us-`east-1&tab=Table
-Scroll to the bottom and click create Database
+Under `DB instance class`, then `Burstable classes (includes t classes)` make sure `db.t2.micro` is selected
+Scroll down, under `Connectivity`, Virtual private cloud `(VPC)` select `HDNVPC` 
+Subnet group `wordpressrdssubnetgroup` automatically populated
+Make sure `Publicly accessible` is set to `No`
+Under `Existing VPC security groups` add `HDNVPC-SGDatabase` and remove `Default`
+Under `Availability Zone` set `us-east-1a`
+Under `Database authentication` select `Password authentication`
+Scroll down and expand `Additional configuration`
+in the `Initial database name` box enter the value from here https://console.aws.amazon.com/systems-manager/parameters/HDN/Wordpress/DBName/description?region=us-`east-1&tab=Table
+Scroll to the bottom and click `create Database`
 
 ** this will take anywhere up to 30 minutes to create ... it will need to be fully ready before you move to the next step - tea time !!!! **
 
