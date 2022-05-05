@@ -2,7 +2,7 @@
 
 instance metadata is provided at this link http://169.254.169.254/latest/metadata/ which works when executed on a running instance using 'curl or wget' utility.
 in addition to that I could be used http://169.254.169.254/metadata/instance-id/ if I want to query specific metadata layer.
-Furthermore I can run this user data when launch EC2
+Furthermore I can run this `user data` when launch EC2
 ```
 #!/usr/bin/env python
 
