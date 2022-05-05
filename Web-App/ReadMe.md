@@ -216,4 +216,46 @@ find /var/www -type f -exec chmod 0664 {} \;
 
 ```
 
+#### Create load balancer
+
 On this stage create Load Balancer
+
+Move to the EC2 console https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Home:
+Click Load Balancers under Load Balancing
+Click Create Load Balancer
+Click Create under Application Load Balancer
+Under name enter HDNWORDPRESSALB
+Ensure internet-facing is selected
+ensure ipv4 selected for IP Address type
+
+On Network mapping, under Mappings for VPC ensure HDNVPC is selected
+Check boxes next to us-east-1a, us-east-1b and us-east-1c
+Select sn-pub-A, sn-pub-B and sn-pub-C for each.
+
+Under Security Groups
+Check Select an existing security group and select HDNVPC-SGLoadBalancer it will have some random at the end and thats ok.
+Unselect 'default VPC'
+
+Under Listeners HTTP and 80 should be selected for Load Balancer Protocol and Load Balancer Port
+
+Click Next: Configure Routing
+
+for Target Group choose New Target Group
+for Name choose HDNWORDPRESSALBTG
+for Target Type choose Instance
+For Protocol choose HTTP
+For Port choose 80
+Under Health checks for Protocol choose HTTP and for Path choose /
+Click Next: Register Targets
+We wont register any right now, click Next: Review
+Click Create
+
+Click on the HDNWORDPRESSALB link
+Scroll down and copy the DNS Name into your clipboard
+
+Now Create another parameter store
+
+Set Name as /HDN/Wordpress/ALBDNSNAME Under Description enter DNS Name of the Application Load Balancer for wordpress
+set Standardset Stringsettext
+for Value set the DNS name of the load balance you copied into your clipboard Click Create Parameter
+
