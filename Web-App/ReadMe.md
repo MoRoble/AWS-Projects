@@ -100,58 +100,58 @@ Scroll to the bottom and click `create Database`
 EFS file system designed to store the wordpress locally stored media. This area stores any media for posts uploaded when creating the post as well as theme data. By storing this on a shared file system it means that the data can be used across all instances in a consistent way, and it lives on past the lifetime of the instance.
 
 Move to the EFS Console https://console.aws.amazon.com/efs/home?region=us-east-1#/get-started
-Click on Create file System
-We're going to step through the full configuration options, so click on Customize
-For Name type HDN-WORDPRESS-CONTENT
-This is critical data so .. ensure Enable Automatic Backups is enabled.
-for LifeCycle management leave as the default of 30 days since last access
-You have two performance modes to pick, choose General Purpose as MAX I/O is for very specific high performance scenarios.
-for Throughput mode pick bursting which links performance to how much space you consume. The more consumed, the higher performance. The other option Provisioned allows for performance to be specified independent of consumption.
-Untick Enable encryption of data at rest .. in production you would leave this on, but for now we focus on architecture it simplifies the implementation.
-Click Next
+Click on `Create file System`
+We're going to step through the full configuration options, so click on `Customize`
+For Name type `HDN-WORDPRESS-CONTENT`
+This is critical data so .. `ensure Enable Automatic Backups` is enabled.
+for `LifeCycle management` leave as the default of `30 days since last access`
+You have two performance modes to pick, choose `General Purpose` as MAX I/O is for very specific high performance scenarios.
+for `Throughput mode` pick `bursting` which links performance to how much space you consume. The more consumed, the higher performance. The other option Provisioned allows for performance to be specified independent of consumption.
+Untick `Enable encryption of data at rest` .. in production you would leave this on, but for now we focus on architecture it simplifies the implementation.
+Click `Next`
 
 Network Settings
 
-In this part you will be configuring the EFS Mount Targets which are the network interfaces in the VPC which your instances will connect with.
+In this part you will be configuring the EFS `Mount Targets` which are the network interfaces in the VPC which your instances will connect with.
 
-In the Virtual Private Cloud (VPC) dropdown select HDNVPC
+In the Virtual Private Cloud `(VPC)` dropdown select `HDNVPC`
 You should see 3 rows.
-Make sure us-east-1a, us-east-1b & us-east-1c are selected in each row.
-In us-east-1a row, select sn-App-A in the subnet ID drop-down, and in the security groups drop-down select HDNVPC-SGEFS & remove the default security group
-In us-east-1b row, select sn-App-B in the subnet ID dropdown, and in the security groups dropdown select HDNVPC-SGEFS & remove the default security group
-In us-east-1c row, select sn-App-C in the subnet ID dropdown, and in the security groups dropdown select HDNVPC-SGEFS & remove the default security group
+Make sure `us-east-1a`, `us-east-1b` & `us-east-1c` are selected in each row.
+In `us-east-1a` row, select `sn-App-A` in the subnet ID drop-down, and in the security groups drop-down select `HDNVPC-SGEFS` & remove the default security group
+In `us-east-1b` row, select `sn-App-B` in the subnet ID dropdown, and in the security groups dropdown select `HDNVPC-SGEFS` & remove the default security group
+In `us-east-1c` row, select `sn-App-C` in the subnet ID dropdown, and in the security groups dropdown select `HDNVPC-SGEFS` & remove the default security group
 
-Click next
-Leave all these options as default and click next
-We wont be setting a file system policy so click Create
+Click `next`
+Leave all these options as default and click `next`
+We wont be setting a file system policy so click `Create`
 
-The file system will start in the Creating State and then move to Available once it does..
-Click on the file system to enter it and click Network tab
-Scroll down and all the mount points will show as creating keep hitting refresh and wait for all 3 to show as available before moving on.
+The file system will start in the `Creating` State and then move to `Available` once it does..
+Click on the file system to enter it and click `Network` tab
+Scroll down and all the mount points will show as `creating` keep hitting refresh and wait for all 3 to show as available before moving on.
 
-Note down the fs-XXXXXXXX file system ID once visible at the top of this screen, you will need it in the next step.
+Note down the `fs-XXXXXXXX` file system ID once visible at the top of this screen, you will need it in the next step.
 
 Add an fsid to parameter store
 
 Now that the file system has been created, you need to add another parameter store value for the file system ID so that the automatically built instance(s) can load this safely.
 
 Move to the Systems Manager console https://console.aws.amazon.com/systems-manager/home?region=us-east-1#
-Click on Parameter Store on the left menu
-Click Create Parameter
-Under Name enter /HDN/Wordpress/EFSFSID Under Description enter File System ID for Wordpress Content (wp-content)
-for Tier set Standard
-For Type set String
-for Data Type set text
-for Value set the file system ID fs-XXXXXXX which you just noted down (use your own file system ID)
-Click Create Parameter
+Click on `Parameter Store` on the left menu
+Click `Create Parameter`
+Under Name enter `/HDN/Wordpress/EFSFSID` Under `Description` enter `File System ID for Wordpress Content (wp-content)`
+for `Tier` set `Standard`
+For `Type` set `String`
+for `Data Type` set `text`
+for `Value` set the file system ID `fs-XXXXXXX` which you just noted down (use your own file system ID)
+Click `Create Parameter`
 
 ##### Build Launch Template
 
 Open the EC2 console https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:sort=desc:tag:Name
-Click Launch Templates under Instances on the left menu
-Click Create Launch Template
-Under Launch Template Name enter Wordpress
-Under Template version description enter Single server DB and App
+Click `Launch Templates` under Instances on the left menu
+Click `Create Launch Template`
+Under `Launch Template Name` enter `Wordpress`
+Under `Template version description` enter `Server DB and App`
 Check the Provide guidance to help me set up a template that I can use with EC2 Auto Scaling box
 
 Under Amazon machine image (AMI) - required click and locate Amazon Linux 2 AMI (HVM), SSD Volume TYpe, Architecture: 64-bit (x86)From Quick Start
