@@ -1,3 +1,9 @@
+## Instance Meta-data explained.
+
+instance metadata is provided at this link http://169.254.169.254/latest/metadata/ which works when executed on a running instance using 'curl or wget' utility.
+in addition to that I could be used http://169.254.169.254/metadata/instance-id/ if I want to query specific metadata layer.
+Furthermore I can run this user data when launch EC2
+```
 #!/usr/bin/env python
 
  
@@ -69,3 +75,49 @@ def datacrawl(url, d):
 if __name__ == '__main__':
 
     print(json.dumps(load()))
+
+```
+
+### on Terraform
+
+To show the metadata of an instance, we need to deploy an EC2 instance in AWS with an argument then execute terraform plan. The output result will be in JSON file.
+`copy` text in file `meta-data` in this repository
+Here I will put my main.tf file which will be in Hodan-tf directory
+
+```
+# main.tf
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+
+  required_version = ">= 1.1.0"
+}
+
+provider "aws" {
+  profile = "default"
+  region  = "us-west-2"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-08d70e59c07c61a3a"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = var.instance_name
+  }
+}
+
+# variables.tf
+
+variable "instance_name" {
+  description = "Value of the Name tag for the EC2 instance"
+  type        = string
+  default     = "ExampleAppServerInstance"
+}
+
+```
