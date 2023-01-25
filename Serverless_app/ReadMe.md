@@ -22,7 +22,7 @@ Click on `Verified Identities` under Configuration
 Click `Create Identity`  
 Check the 'Email Address' checkbox  
 *Ideally you will need a `sending` email address for the application and a `receiving email address` for your test customer. But you can use the same email for both.*  
-For my application email ... the email the app will send from i'm going to use `m_roble+arday@outlook.com`   
+For my application email ... the email the app will send from i'm going to use `my_email+arday@outlook.com`   
 Click `Create Identity`  
   
 Record this address somewhere save as the `ArdayOfEngineers Sending Address`  
@@ -30,7 +30,7 @@ Record this address somewhere save as the `ArdayOfEngineers Sending Address`
 If you want to use a different email address for the test customer (recommended), follow the steps below  
 Click `Create Identity`  
 Check the 'Email Address' checkbox 
-For my application email ... the email for my test customer is  `m_roble+ardaycustomer@outlook.com`   
+For my application email ... the email for my test customer is  `my_email+ardaycustomer@outlook.com`   
 Click `Create Identity`   
 You will receive an email to this address containing a link to click  
 Click that link   
@@ -433,4 +433,4 @@ Review the logs and ensure you are happy with the flow.
 
 !! Success Screenshots
 
-<img width="511" alt="image" src="https://user-images.githubusercontent.com/66903895/213894382-a12f9982-4afd-4eec-9f64-0a3903bccc93.png">
+<img width="600" alt="Screenshot 2023-01-25 at 16 54 44" src="https://user-images.githubusercontent.com/66903895/214628500-a21ed81f-1084-4980-afd8-4e9768ed7136.png">
