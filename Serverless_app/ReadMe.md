@@ -434,3 +434,10 @@ Review the logs and ensure you are happy with the flow.
 !! Success Screenshots
 
 <img width="600" alt="Screenshot 2023-01-25 at 16 54 44" src="https://user-images.githubusercontent.com/66903895/214628500-a21ed81f-1084-4980-afd8-4e9768ed7136.png">
+
+
+
+<em> Reference:<br>
+Here's the refence: [acantril](https://github.com/acantril/learn-cantrill-io-labs/tree/master/aws-serverless-pet-cuddle-o-tron)
+[^bignote]: [acantril's GitHub](https://github.com/acantril/learn-cantrill-io-labs/tree/master/aws-serverless-pet-cuddle-o-tron)
+</em>
