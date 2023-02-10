@@ -1,2 +1,3 @@
 
+> a brief about modules
 Modules allow for the organization and reusability of Terraform code, breaking down infrastructure into smaller components. Nested modules further organize and reuse code, creating a hierarchy of modules. The use of modules provides several benefits, including standardizing infrastructure for an organization, managing dependencies between resources, easy testing and validation of infrastructure, and managing different environments. Modules provide a powerful way to improve consistency, reliability, and security of infrastructure while making it easier to test and validate changes. [Read More](https://github.com/MoRoble/AWS-Projects/tree/main/DataBase-Migration/modules)
