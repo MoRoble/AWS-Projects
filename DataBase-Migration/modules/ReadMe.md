@@ -1,3 +1,9 @@
+
+### Organizing and Managing Infrastructure with Terraform Module
+> The Benefits of Using Terraform Modules for Organizing, Sharing, and Managing Infrastructure as Code
+
+https://bit.ly/3DoAjTr
+
 Terraform modules are a way to organize, and reuse Terraform code. They allow you to break down your infrastructure into smaller, reusable components. By creating modules, you can define a set of resources and their configuration in one place, and then use those modules in multiple places throughout your infrastructure.
 
 Modules can also be used to share infrastructure configuration across different departments or regions. For example, you could create a module for a VPC and then use that module in multiple regions to create a VPC in each region.
@@ -14,3 +20,18 @@ Modules also provide the ability to manage different environments like developme
 
 Overall, Terraform modules provide a powerful way to organize, share, and manage your infrastructure as code. By using modules, you can improve consistency, reliability, and security of your infrastructure, while also making it easier to test and validate changes.
 
+a diagram of Terraform modules not limited to but might look like.
+
+![image](https://user-images.githubusercontent.com/66903895/218161409-12463ce4-f94c-44d6-bd72-fb82f3b475f6.png)
+
+![image](https://user-images.githubusercontent.com/66903895/218161494-247bebcc-e990-40a9-8d7a-0c31493c852d.png)
+
+At the root level, there would be the main Terraform codebase, which would include the configuration for the root module. The root module would be connected to several child modules, each of which represents a specific infrastructure pattern or environment.
+
+Each child module would have its own inputs and outputs, which define the dependencies between resources. The inputs would be represented by arrows pointing into the child module, while the outputs would be represented by arrows pointing out of the child module.
+
+For example, a child module for a virtual private cloud (VPC) in a specific region would have inputs such as the VPC name and CIDR block, and outputs such as the VPC ID and subnet IDs. Another child module for a database cluster would have inputs such as the number of instances and storage size, and outputs such as the database endpoint and connection string.
+
+Each of the child modules would also have their own sub-modules, for example for different environments, like development, staging, production. These sub-modules would also have inputs and outputs and would be connected to the parent child module.
+
+This visual representation of the modules and their relationships would help to understand how the different resources are connected and dependent on each other, and it can also help to identify any issues or potential improvements in the infrastructure.
