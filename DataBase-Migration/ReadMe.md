@@ -23,13 +23,14 @@ So, whether you're a small business just starting out or an established enterpri
 In conclusion, migrating a web application to AWS can be a complex process, but with the right tools and expertise, it can lead to a more efficient, secure, and scalable solution. The migration of a simple WordPress application from an on-premises environment to AWS, as outlined in this article, showcases the capabilities of AWS and its potential to enhance the digital capabilities of businesses.
 
 
-http://bit.ly/3ln09RF
 
 #### Seamless Migration of On-Prem Web Applications to Cloud EC2
 
 > Ensuring Efficient Operation through Cloning to Cloud Infrastructure
 
 The current project requires a robust and sophisticated architecture, thus it has been divided into two phases. The first phase involves migrating a simple WordPress web application from an on-premises environment to Amazon Web Services (AWS). The on-premises environment will be a virtual web server, which is simulated using Amazon Elastic Compute Cloud (EC2), and a self-managed MariaDB database server running on the same EC2 instance.
+
+http://bit.ly/3ln09RF
 
 The migration process will involve cloning the current setup of the on-premises EC2 webserver, including its configurations and dependencies, to a cloud-based EC2 instance. This will ensure that the application continues to run smoothly in its new cloud environment, with minimal downtime or disruption to operations. 
 
