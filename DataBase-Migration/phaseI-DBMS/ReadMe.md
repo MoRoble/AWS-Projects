@@ -49,11 +49,11 @@ Scroll down and expand `Additional configuration`
 Under `Initial database name` enter `wordpress_db`  
 Scroll down and click `Create Database`  
 
-This will take some time.. 
+This will take some time... and keep this for the next phase of this project 
 
 and you can continue to create `new EC2 instance` manually until the database is in a ready state.
 
-#### - CREATE THE EC2 INSTANCE
+##### * Create EC2 instance
 
 Move to the EC2 Console https://us-west-1.console.aws.amazon.com/ec2/home?region=us-west-1#LaunchInstances:  
 Click `Instances`  
@@ -75,7 +75,7 @@ Click `View All Instances`
 
 Wait for the `cloud_server_1` instance to be in a `Running` state with `2/2 checks` before continuing.
 
-#### - INSTALL WORDPRESS Requirements
+##### INSTALL WORDPRESS Requirements
 
 Select the `cloud_server_1` instance, right click, `Connect`  
 Select `EC2 instance connect` and click `Connect`  
@@ -88,6 +88,12 @@ then make sure apache is running and set to run at startup with
 ```
 sudo systemctl enable mariadb.service
 sudo systemctl start apache2.service
+
+### --- create and configure MariaDB for the WordPress
+sudo mysql -e "CREATE DATABASE wordpress_db"
+sudo mysql -e "CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'somalistudentsplu5'"
+sudo mysql -e "GRANT ALL ON wordpress_db.* TO 'wp_user'@'localhost' IDENTIFIED BY 'somalistudentsplu5'"
+sudo mysql -e "FLUSH PRIVILEGES"
 ```
 
 You now have a running apache web server with the ability to connect to the wordpress database (currently running onpremises)
