@@ -1,16 +1,16 @@
-##### Phase I
+### Phase I
 
-Using the Terraform Code in This Repository to Provision Our Base Infrastructure: 2 VPC's one for onprem and one for cloud AWS, EC2 ...
+Use the Terraform Code in This Repository to Provision Base Infrastructure which consists of: 2 VPC's one for onprem and one for cloud AWS, EC2 ...
 
 Create RDS instance on AWS side
 
 Launch EC2 instance on AWS side, install WordPress requirements and start migrating
 
-follow this link to step-by-tep guide for mariaDB install to your ubuntu instance
+follow this link to step-by-tep guide for mariaDB installation to your ubuntu instance
 
 [Digital ocean MariaDB](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
 
-and for installing WordPress to ubuntu follow this link
+and follow this link for installing WordPress to ubuntu EC2 instance
 
 [Digital Ocean WordPress](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-20-04-with-a-lamp-stack)
 
@@ -144,10 +144,19 @@ sudo systemctl restart apache2
 sudo chown -R www-data:www-data  /var/www/html/wp-content/uploads
 ```
 
-Move to the EC2 running instances console https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:  
+Move to the EC2 running instances console https://us-west-1.console.aws.amazon.com/ec2/home?region=us-west-1#Instances:
 Select the `cloud_server-1` instance  
 copy down its `public IPv4 DNS` into your clipboard and open it in a new tab  
 if working, this Web Instance (aws) is now loading using the on-premises database.
 
-> this project will be re-deployed to different architecture
-for now it will be on Version I
+--
+
+> this project will be re-deployed to different architecture <br>
+for now this is the end of Phase I
+
+
+---
+<em>reference</em>:
+
+* [1] : [acantrill](https://github.com/acantril/learn-cantrill-io-labs/tree/master/aws-dms-database-migration)
+* [2] : [MTC Terraform](https://github.com/morethancertified/mtc-terraform)
