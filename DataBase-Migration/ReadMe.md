@@ -13,4 +13,4 @@ In the second phase of the project, the architecture will be further enhanced by
 
 The migration of the on-premises WordPress EC2 and RDS managed SQL database will follow the completion of the architecture upgrade, ensuring a smooth transition and minimal disruption to operations. This migration will bring the web application to a state-of-the-art infrastructure, providing the necessary support for growth and scalability.
 
-[**Phase I**]()
+[**Phase I**](https://github.com/MoRoble/AWS-Projects/tree/main/DataBase-Migration/phaseI-DBMS)
