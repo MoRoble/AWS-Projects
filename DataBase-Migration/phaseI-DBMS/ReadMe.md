@@ -13,6 +13,7 @@ follow this link to step-by-tep guide for mariaDB installation to your ubuntu in
 and follow this link for installing WordPress to ubuntu EC2 instance
 
 [Digital Ocean WordPress](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-20-04-with-a-lamp-stack)
+& [for Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu)
 
 Once Deployment of terraform is successfully finished then follow these steps
 
