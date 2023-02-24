@@ -40,3 +40,5 @@ The migration of the on-premises WordPress EC2 and RDS managed SQL database will
 <em>Click this link for text based instructions</em>
 
 [**Phase I**](https://github.com/MoRoble/AWS-Projects/tree/main/DataBase-Migration/phaseI-DBMS)
+
+[**Phase II**](https://github.com/MoRoble/AWS-Projects/tree/main/DataBase-Migration/phaseII)
