@@ -121,3 +121,10 @@ if working, this Web Instance (aws) is now loading using the on-premises databas
 for now it will be on Version II
 
 ＼(^ o ^)／
+
+
+---
+<em>reference</em>:
+
+* [1] : [acantrill](https://github.com/acantril/learn-cantrill-io-labs/tree/master/aws-dms-database-migration)
+* [2] : [MTC Terraform](https://github.com/morethancertified/mtc-terraform)

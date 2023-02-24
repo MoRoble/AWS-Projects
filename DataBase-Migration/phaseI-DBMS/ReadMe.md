@@ -16,7 +16,7 @@ and follow this link for installing WordPress to ubuntu EC2 instance
 & [for Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu)
 
 Once Deployment of terraform is successfully finished then follow these steps
-
+You can skip to Migrate Wordpress content since all these steps have been automated during terraform provisioning.
 #### - CREATE THE RDS INSTANCE
 
 Move to the RDS Console https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1  
@@ -98,19 +98,35 @@ sudo mysql -e "FLUSH PRIVILEGES"
 ```
 
 You now have a running apache web server with the ability to connect to the wordpress database (currently running onpremises)
+to install wordpress copy these lines and paste to cloud server
+```
+cd /var/www/html
+wget https://wordpress.org/latest.tar.gz  #-P /var/www/html
+sudo chown -R ubuntu:www-data /var/www/html
+sudo tar -xvf latest.tar.gz
+# sudo cp -R wordpress /var/www/html/
+sudo rm -rf index*
+sudo cp -rvf wordpress/* .
+sudo rm -R wordpress
+sudo rm latest.tar.gz
 
+```
+you can skip all those steps since it's provisioned by terraform
 #### - MIGRATE WORDPRESS Content over
+Before starting migrating contents, copy the public IPv4 to your browser and install WordPress, upload something or make some contents for proof of migration.
 
-You're going to edit the SSH config on this machine to allow password authentication on a temporary basis.  
+You're going to edit the SSH config on this (cloud_server) machine to allow password authentication on a temporary basis.  
+
+Next, you're going to edit the SSH config on this machine (cloud_server) to allow password authentication on a temporary basis.  
 You will use this to copy the wordpress data across to the cloud_Server-1 machine from the on-premises server Machine  
 
 run a `sudo nano /etc/ssh/sshd_config`  
 locate `PasswordAuthentication no` and change to `PasswordAuthentication yes` , then `ctrl+o` to save and `ctrl+x` to exit.  
-then set a password on the ec2-user user  
-run a `sudo passwd ubuntu` and enter the `DBPassword` you noted down at bootstrap shebang process.  
+then set a password on the ubuntu user  
+run a `sudo passwd ubuntu` and enter the `dbpassword` you noted down at bootstrap shebang process.  
 **this is only temporary.. we're using the same password throughout the project to make things easier and less prone to mistakes**
 
-restart SSHD to make those changes with `service sshd restart`  or `systemctl restart sshd`
+restart SSHD to make those changes executed with `service sshd restart`  or `systemctl restart sshd`
 > note: use `sudo` for both commands or authenticate `ubuntu` user using the password you just setup
 
 Return back to the EC2 console https://us-west-1.console.aws.amazon.com/ec2/home?region=us-west-1#Instances: 
@@ -128,7 +144,7 @@ this will copy the wordpress local files from `onprem_server_1` (on-premises) to
 
 Select the `cloud_server_1` instance, right click, `Connect`  
 Select `EC2 instance connect` and click `Connect`  
-When connected a privilege bash shell or use `sudo`
+When connected use a privilege bash shell or use `sudo`
 
 move to the `ubuntu` home folder by doing a `cd /home/ubuntu`  
 then do an `ls -la` and you should see the html folder you just copied.  
@@ -150,20 +166,11 @@ sudo find /var/www -type f -exec chmod 0664 {} \;
 sudo systemctl restart apache2
 sudo chown -R www-data:www-data  /var/www/html/wp-content/uploads
 ```
+At this point check that you have a functional cloud based wordpress application instance, and you have migrated content from the on-premises virtual machine (simulated) using SCP.
 
-Move to the EC2 running instances console https://us-west-1.console.aws.amazon.com/ec2/home?region=us-west-1#Instances:
-Select the `cloud_server-1` instance  
-copy down its `public IPv4 DNS` into your clipboard and open it in a new tab  
-if working, this Web Instance (aws) is now loading using the on-premises database.
 
 --
 
 > this project will be re-deployed to different architecture <br>
 for now this is the end of Phase I
 
-
----
-<em>reference</em>:
-
-* [1] : [acantrill](https://github.com/acantril/learn-cantrill-io-labs/tree/master/aws-dms-database-migration)
-* [2] : [MTC Terraform](https://github.com/morethancertified/mtc-terraform)
