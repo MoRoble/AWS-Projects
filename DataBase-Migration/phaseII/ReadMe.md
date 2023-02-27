@@ -112,7 +112,7 @@ then it will be in the `Running` State until it moves into `Load complete`
 At this point the data has been migrated into the RDS instance  
 
 
-Move to the EC2 running instances console https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:  
+Move to the EC2 running instances console https://us-west-1.console.aws.amazon.com/ec2/home?region=us-west-1#Instances:  
 Select the `cloud_server-1` instance  
 copy down its `public IPv4 DNS` into your clipboard and open it in a new tab  
 if working, this Web Instance (aws) is now loading using the on-premises database.
