@@ -9,24 +9,8 @@
 #--> echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[username]/.zprofile
 #--> eval "$(/opt/homebrew/bin/brew shellenv)"
   tasks:
-      - name: Ensuring Homebrew Is Installed
-        stat:
-          path: /usr/local/bin/brew
-        register: homebrew_check
-
-      - name: Check if Homebrew is installed
-        command: brew --version
-        register: brew_check
-        ignore_errors: true
-        changed_when: false
-
-# 2 ways to install VS-Code
-    # - name: Install Visual Studio Code
-    #   homebrew_cask:
-    #     name: visual-studio-code
-    #     state: present
-    - name: Install applications using Homebrew Cask
-      become: yes
+    - name: Install applications using Homebrew Cask for GUI apps
+      # become: yes
       homebrew_cask:
         name: "{{ item }}"
         state: present
@@ -35,7 +19,8 @@
         - visual-studio-code
         - docker
         - iterm2
-
+        - slack
+        - google-chrome
 
     # - name: Check if Visual Studio Code is installed
     #   shell: brew list --cask | grep visual-studio-code
@@ -58,15 +43,20 @@
       args:
         creates: $HOME/.oh-my-zsh
 
-    - name: Clone Powerlevel10k theme repository
-      shell: git clone https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
-      args:
-        creates: $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+    - name: clone these repo's for iTerm2
+      git:
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { repo: 'https://github.com/romkatv/powerlevel10k.git', dest: '$HOME/.oh-my-zsh/custom/themes/powerlevel10k' }
+        - { repo: 'https://github.com/zsh-users/zsh-autosuggestions', dest: '$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions' }
+        - { repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git', dest: '$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting' }    
+        - { repo: 'https://github.com/asdf-vm/asdf.git', dest: '~/.asdf' }
 
-    - name: Clone asdf repository
-      shell: git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-      args:
-        creates: $HOME/.asdf
+    # - name: Clone asdf repository
+    #   shell: git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+    #   args:
+    #     creates: $HOME/.asdf
 
     - name: Configure ZSH_THEME in .zshrc
       lineinfile:
@@ -107,3 +97,4 @@
         - libyaml
         - pyenv-virtualenvwrapper
         - awscli
+        # - expect # to handle prompts
