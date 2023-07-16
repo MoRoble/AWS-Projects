@@ -61,7 +61,7 @@ host_key_checking = false
 ```
 - Create Hosts file
 Next, create the hosts file, which serves as your inventory. Place it in the desired location, such as the project's root directory or your home directory as `~/.ansible/hosts`. For system-wide availability on macOS, save it in `/etc/ansible/hosts`.
-Regardless of the chosen location, you can explicitly specify the path to the hosts file when running Ansible commands using the `-i` or `--inventory` option e.g., `ansible-playbook -i /path/to/your/hosts/file macos_setup.yaml`. In our project here's how it will be our hosts file:
+Regardless of the chosen location, you can explicitly specify the path to the hosts file when running Ansible commands using the `-i` or `--inventory` option e.g., `ansible-playbook -i /path/to/your/hosts/file macos_setup.yaml`. In our project here's our hosts file:
 ```
 [hosts]
 localhost
@@ -98,8 +98,8 @@ Once you have successfully automated your macOS setup using Ansible playbooks, c
 
 Resources:
 - Ansible Documentation: Official documentation that provides in-depth explanations of Ansible concepts, modules, and best practices.
-- Homebrew: The official Homebrew website, offering information on how to install and use Homebrew, the macOS package manager.
-- GitHub Repository: A GitHub repository with example Ansible playbooks can be found at [link to your GitHub repository].
+- Homebrew: The official Homebrew [website](https://brew.sh/), offering information on how to install and use Homebrew, the macOS package manager.
+- GitHub Repository: A GitHub repository with example Ansible playbooks can be found at [Ansible-MacOS](https://github.com/MoRoble/AWS-Projects/tree/main/Ansible).
 - Online Communities: Engage with online communities such as Stack Overflow, Ansible Galaxy, and Ansible mailing lists to seek advice, share knowledge, and solve challenges.
 
 Remember to customize the guide and playbooks to fit your specific needs and preferences. Share your experience by contributing to open-source Ansible projects or publishing your playbooks on GitHub. Happy automating, and welcome to the world of DevOps!
