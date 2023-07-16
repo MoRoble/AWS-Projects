@@ -11,7 +11,7 @@ To make the most of this guide, you will need the following:
 - Familiarity with YAML syntax and a basic understanding of Ansible.
 
 
-1. Start to initiate the process of automating the setup of macOS, begin by installing the essential developer tools using the command `sudo xcode-select --install`. This step ensures that your macOS system is equipped with the necessary components, including `git, ssh, python3`, and `make`. Once these tools are successfully installed, proceed to the following methods:
+1. **Start to initiate** the process of automating the setup of macOS, begin by installing the essential developer tools using the command `sudo xcode-select --install`. This step ensures that your macOS system is equipped with the necessary components, including `git, ssh, python3`, and `make`. Once these tools are successfully installed, proceed to the following methods:
   
   - Check developer tools:
    Run the following commands to check the versions of developer tools:
@@ -42,28 +42,38 @@ To make the most of this guide, you will need the following:
    ```
 Now you can automate your macOS setup with ease using Ansible!
 
-2. By default, Ansible does not automatically generate a hosts file during installation. For this project, since we're going to install applications that will work on a system-wide level, we recommend manually creating an inventory (hosts) file in the /etc/ansible/hosts directory. Additionally, a configuration file named ansible.cfg  should be placed in the same location, with a few configuration lines added to ensure smooth automation. Here is an example of how both files will appear.
+2. **When working with Ansible**, it's important to understand how to configure the necessary files: `hosts` and `ansible.cfg`. By default, Ansible does not generate the `ansible.cfg` file during installation; therefore, you need to create it manually if you want to customize any configurations.
+
+- Create config file:
+Create a new file named "ansible.cfg" in the desired location (Ensure that the name matches exactly as `ansible.cfg`). It's common to save it in the same directory as your Ansible playbooks, alternatively, for global configurations, save it in `/etc/ansible/ansible.cfg`, or for per-user configurations, save it as `~/.ansible.cfg`.
+1. The directory specified by the `ANSIBLE_CONFIG` environment variable (if set).
+2. The current working directory.
+3. The user's home directory `~/.ansible.cfg`.
+4. The system-wide configuration directory `/etc/ansible/ansible.cfg`.
+If Ansible finds multiple `ansible.cfg` files in different locations, it will prioritize the one with the earliest match in the above order.
+
+Open the `ansible.cfg` file and add the [defaults] section, which is mandatory. Customize this section by specifying options like inventory to set the path to your hosts file. Adjust other options according to your requirements, then save the file, here's example:
 ```
-### setup inventory file
-sudo nano /etc/ansible/hosts
-## add these lines
+[defaults]
+inventory = /path/to/your/hosts/file
+## to disable SSH host checking for smooth automation add this line or un-comment
+host_key_checking = false
+```
+- Create Hosts file
+Next, create the hosts file, which serves as your inventory. Place it in the desired location, such as the project's root directory or your home directory as `~/.ansible/hosts`. For system-wide availability on macOS, save it in `/etc/ansible/hosts`.
+Regardless of the chosen location, you can explicitly specify the path to the hosts file when running Ansible commands using the `-i` or `--inventory` option e.g., `ansible-playbook -i /path/to/your/hosts/file macos_setup.yaml`. In our project here's how it will be our hosts file:
+```
 [hosts]
 localhost
 ## add configuration variables
 [hosts:vars]
 ansible_connection=local
 ansible_python_interpreter=/usr/bin/python3
- 
-# disable SSH key confirmation to run the automation smoothly
-sudo vim /etc/ansible/ansible.cfg
-[defaults]
-# to disable SSH key host checking add this line or un-comment
-host_key_checking = false
 ```
 
-3. Set up a Project Directory: Create a new directory for your Ansible project. This directory will house your Ansible playbooks and associated files. Navigate to the project directory using the command line.
+3. **Set up a Project Directory:** Create a new directory for your Ansible project. This directory will house your Ansible playbooks and associated files. Navigate to the project directory using the command line.
 
-Writing Ansible Playbook Tasks:
+5. **Writing Ansible Playbook Tasks:**
 In your project directory, create a new YAML file, e.g., `macos_setup.yml`, to define your Ansible playbook tasks. Here are some essential tasks to include:
 
 - Installing the AWS CLI (Command Line Interface), which is a command-line tool used for managing and configuring resources on the AWS cloud.
