@@ -82,7 +82,7 @@ In your project directory, create a new YAML file, e.g., `macos_setup.yml`, to d
 
 - Configuring zsh and Oh My Zsh: Customize the `.zshrc` file using the `lineinfile` module to set the desired theme, plugins, and environment variables. Integrate Oh My Zsh to enhance your shell experience.
 
-- Get the playbook by accessing [the link]() and clone it into your project directory. After cloning, navigate to the playbook directory.
+- Get the playbook by accessing [macos_setup](https://github.com/MoRoble/AWS-Projects/blob/main/Ansible/macos_setup.yaml) YAML file and clone it into your project directory. After cloning, navigate to the playbook directory.
 
 To run the playbook, execute the following command in your terminal: `ansible-playbook macos_setup.yml`. Ansible will execute the tasks defined in your playbook, automatically installing and configuring the specified software and settings on your macOS system.
 
