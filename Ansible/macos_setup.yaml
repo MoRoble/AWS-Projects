@@ -1,0 +1,109 @@
+---
+- name: Automate app to install on M1 MacOS
+  hosts: localhost
+  gather_facts: false
+  # become: true
+
+### manual installation is prefered as of now
+#--> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#--> echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[username]/.zprofile
+#--> eval "$(/opt/homebrew/bin/brew shellenv)"
+  tasks:
+      - name: Ensuring Homebrew Is Installed
+        stat:
+          path: /usr/local/bin/brew
+        register: homebrew_check
+
+      - name: Check if Homebrew is installed
+        command: brew --version
+        register: brew_check
+        ignore_errors: true
+        changed_when: false
+
+# 2 ways to install VS-Code
+    # - name: Install Visual Studio Code
+    #   homebrew_cask:
+    #     name: visual-studio-code
+    #     state: present
+    - name: Install applications using Homebrew Cask
+      become: yes
+      homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - sublime-text
+        - visual-studio-code
+        - docker
+        - iterm2
+
+
+    # - name: Check if Visual Studio Code is installed
+    #   shell: brew list --cask | grep visual-studio-code
+    #   register: vscode_check
+    #   changed_when: false
+    #   ignore_errors: true
+
+    # - name: Install Visual Studio Code
+    #   shell: brew install --cask visual-studio-code
+    #   when: vscode_check.rc != 0
+
+
+    # - name: Install iTerm2
+    #   homebrew_cask:
+    #     name: iterm2
+    #     state: present
+
+    - name: Install Oh My Zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        creates: $HOME/.oh-my-zsh
+
+    - name: Clone Powerlevel10k theme repository
+      shell: git clone https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+      args:
+        creates: $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+
+    - name: Clone asdf repository
+      shell: git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+      args:
+        creates: $HOME/.asdf
+
+    - name: Configure ZSH_THEME in .zshrc
+      lineinfile:
+        path: ~/.zshrc
+        regexp: '^ZSH_THEME='
+        line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
+
+    - name: Configure plugins in .zshrc
+      lineinfile:
+        path: ~/.zshrc
+        regexp: '^plugins='
+        line: 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search asdf)'
+
+    - name: Update Homebrew
+      command: brew update
+
+    # - name: Install Docker desktop
+    #   homebrew_cask:
+    #     name: docker
+    #     state: present
+
+## alternative way to install python-yq
+    # - name: Install python-yq using pip
+    #   pip:
+    #     name: yq
+    #     state: present
+
+    - name: Install apps/packages iteratively wget, pyenv, jq ,,,
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - wget
+        - pyenv
+        - pyenv-virtualenv #to support pyarrow
+        - jq
+        - warrensbox/tap/tfswitch
+        - libyaml
+        - pyenv-virtualenvwrapper
+        - awscli
