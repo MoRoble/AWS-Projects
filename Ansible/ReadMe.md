@@ -6,21 +6,21 @@ Within this guide, focuses for individuals seeking to set up a new workstation w
 
 To make the most of this guide, you will need the following:
 
-1. A macOS system (preferably M1-based or higher) for practicing Ansible playbooks.
-2. Basic knowledge of DevOps concepts and workflows.
-3. Familiarity with YAML syntax and a basic understanding of Ansible.
+- A macOS system (preferably M1-based or higher) for practicing Ansible playbooks.
+- Basic knowledge of DevOps concepts and workflows.
+- Familiarity with YAML syntax and a basic understanding of Ansible.
 
-Getting Started:
-1. To initiate the process of automating the setup of macOS, begin by installing the essential developer tools using the command `sudo xcode-select --install`. This step ensures that your macOS system is equipped with the necessary components, including `git, ssh, python3`, and `make`. Once these tools are successfully installed, proceed to the following methods:
 
-1. Check developer tools:
+1. Start to initiate the process of automating the setup of macOS, begin by installing the essential developer tools using the command `sudo xcode-select --install`. This step ensures that your macOS system is equipped with the necessary components, including `git, ssh, python3`, and `make`. Once these tools are successfully installed, proceed to the following methods:
+  
+  - Check developer tools:
    Run the following commands to check the versions of developer tools:
    ```
    git --version
    python3 --version
    make --version
    ```
-2. Get Python package manager `pip3`:
+  - Get Python package manager `pip3`:
    Alternatively use the following commands to install Ansible using `pip3`:
    ```
    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -32,7 +32,7 @@ Getting Started:
    ## or without sudo to minimize conflicting behavior and broken permission with the system package manager
    ansible --version # optional
    ```
-3. Install homebrew:
+- Install homebrew:
    ```
    ## install homebrew on M1 Mac
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
