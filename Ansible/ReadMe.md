@@ -37,7 +37,7 @@ To make the most of this guide, you will need the following:
    ## install homebrew on M1 Mac
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    # run these by changing your USERNAME, or copy from the screen
-   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[<<<ChangeMe>>USERNAME]/.zprofile
+   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
    eval "$(/opt/homebrew/bin/brew shellenv)"
    ```
 Now you can automate your macOS setup with ease using Ansible!
