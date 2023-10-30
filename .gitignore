@@ -31,7 +31,7 @@
 
 
 # # Local .terraform directories
-# **/.terraform/*
+**/.terraform/*
 
 # Thumbnails
 ._*
