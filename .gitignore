@@ -12,6 +12,7 @@
 
 # Directories
 .terraform/
+../../.terraform/
 
 # SSH Keys
 *.pem
