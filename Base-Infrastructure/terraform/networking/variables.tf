@@ -4,6 +4,14 @@ variable "vpc_name" {
   type = string
 }
 
+variable "vpc_cidr" {
+  description = "vpc cidr block"
+  type        = string
+}
+
+variable "project_name" {}
+variable "environment" {}
+
 variable "role_name" {}
 
 variable "envs" {
@@ -22,9 +30,6 @@ variable "public_sn_tag" {
   # values = ["pub_sn_", "onprem-sn"]
 }
 
-variable "vpc_cidr" {
-  type = string
-}
 
 variable "pub_cidrs" {
   type = list(any)

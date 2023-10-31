@@ -1,13 +1,16 @@
 host_os = "linux"
 
+##------Common Vars ----
 aws_region   = "eu-north-1"
 project_name = "arday_zone"
 environment  = "dev"
 
-
+##--Networking Vars
 access_ip   = "0.0.0.0/0"
+
 bucketnames = "devops-general-roble"
 # tags = "devenv"
+
 
 ##----ec2-vars----
 

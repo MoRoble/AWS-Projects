@@ -12,9 +12,10 @@ terraform {
 
 # Provider block, provides the information need to access AWS specificly
 provider "aws" {
-  region                  = var.aws_region
-  shared_credentials_file = "~/.aws/credentials"
-  profile                 = "devadmin"
+  region = var.aws_region
+  # shared_credentials_file = "~/.aws/credentials" ## older version of terraform
+  shared_credentials_files = ["~/.aws/credentials"]
+  profile                  = "devadmin"
 
   # default_tags {
   #   tags = {

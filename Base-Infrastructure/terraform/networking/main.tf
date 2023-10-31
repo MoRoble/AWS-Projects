@@ -16,12 +16,14 @@ resource "random_shuffle" "az_list" {
 
 resource "aws_vpc" "arday_vpc" {
   cidr_block           = var.vpc_cidr
+  # instance_tenancy     = default # this is new to me
   enable_dns_hostnames = true
   enable_dns_support   = true
 
   tags = {
     # Name = "Dev-Main-VPC"
-    Name        = var.vpc_name
+    # Name        = var.vpc_name
+    Name = "${var.project_name}-${var.environment}-vpc"
     Environment = var.envs
   }
   lifecycle {
@@ -44,7 +46,8 @@ resource "aws_internet_gateway" "arday_igw" {
 
   tags = {
     # Name = "arday-igw"
-    Name = var.arday_igw
+    # Name = var.arday_igw
+    Name = "${var.project_name}-${var.environment}-igw"
   }
 }
 
@@ -53,7 +56,8 @@ resource "aws_route_table" "arday_pub_rt" {
 
   tags = {
     # Name = "pub-rt"
-    Name = var.pub_rt
+    # Name = var.pub_rt
+    Name = "${var.project_name}-${var.environment}-public-rt"
   }
 }
 
@@ -69,7 +73,8 @@ resource "aws_default_route_table" "private_rt" {
 
   tags = {
     # Name = "arday-pr-rt"
-    Name = var.arday-pvt-rt
+    # Name = var.arday-pvt-rt
+    Name = "${var.project_name}-${var.environment}-private-rt"
   }
 }
 

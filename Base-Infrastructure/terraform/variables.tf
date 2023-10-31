@@ -4,33 +4,33 @@ variable "host_os" {
   type = string
 }
 
+###----Common Vars
 variable "aws_region" {
   description = "region to create resources"
   type        = string
 }
-
 variable "project_name" {
   description = "project name"
   type        = string
 }
-
 variable "environment" {
   description = "environment to deploy infrastructure"
   type        = string
 }
+
+###----Networking Vars ----
+variable "access_ip" {
+  type = string
+}
+variable "peer_owner_id" {}
+
+
 
 variable "role_name" {
   default = "dev-wp"
 }
 
 variable "file_path" {}
-
-variable "peer_owner_id" {}
-
-
-variable "access_ip" {
-  type = string
-}
 
 variable "app_account" {
   type    = number

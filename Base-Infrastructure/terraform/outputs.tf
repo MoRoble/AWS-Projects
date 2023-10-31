@@ -1,15 +1,15 @@
 ####---- root / outputs.tf
 
-output "ec2_public_dns" {
-  value = flatten(module.compute.instance_public_dns)
-}
-output "ec2_public_ip" {
-  value = module.compute.instance_public_ip
-}
+# output "ec2_public_dns" {
+#   value = flatten(module.compute.instance_public_dns)
+# }
+# output "ec2_public_ip" {
+#   value = module.compute.instance_public_ip
+# }
 
-output "ec2_onprem_ip" {
-  value = module.onprem_compute.instance_public_ip
-}
+# output "ec2_onprem_ip" {
+#   value = module.onprem_compute.instance_public_ip
+# }
 
 ####----iam outputs
 
