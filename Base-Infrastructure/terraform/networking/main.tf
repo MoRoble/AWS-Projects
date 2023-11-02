@@ -15,7 +15,7 @@ resource "random_shuffle" "az_list" {
 ## VPC ----
 
 resource "aws_vpc" "arday_vpc" {
-  cidr_block           = var.vpc_cidr
+  cidr_block = var.vpc_cidr
   # instance_tenancy     = default # this is new to me
   enable_dns_hostnames = true
   enable_dns_support   = true
@@ -23,7 +23,7 @@ resource "aws_vpc" "arday_vpc" {
   tags = {
     # Name = "Dev-Main-VPC"
     # Name        = var.vpc_name
-    Name = "${var.project_name}-${var.environment}-vpc"
+    Name        = "${var.project_name}-${var.environment}-vpc"
     Environment = var.envs
   }
   lifecycle {
@@ -32,13 +32,6 @@ resource "aws_vpc" "arday_vpc" {
     */
     create_before_destroy = true
   }
-}
-
-resource "aws_route_table_association" "arday_pub_assoc" {
-  count     = var.pub_sn_count
-  subnet_id = aws_subnet.arday_pub_sn.*.id[count.index]
-  # subnet_id      = aws_subnet.dev_pub_sn1.id
-  route_table_id = aws_route_table.arday_pub_rt.id
 }
 
 resource "aws_internet_gateway" "arday_igw" {
@@ -60,6 +53,15 @@ resource "aws_route_table" "arday_pub_rt" {
     Name = "${var.project_name}-${var.environment}-public-rt"
   }
 }
+
+resource "aws_route_table_association" "arday_pub_assoc" {
+  count     = var.pub_sn_count
+  subnet_id = aws_subnet.arday_pub_sn.*.id[count.index]
+  # subnet_id      = aws_subnet.dev_pub_sn1.id
+  route_table_id = aws_route_table.arday_pub_rt.id
+}
+
+
 
 resource "aws_route" "default_rt" {
   route_table_id         = aws_route_table.arday_pub_rt.id

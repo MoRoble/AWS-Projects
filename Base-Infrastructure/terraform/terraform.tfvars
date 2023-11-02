@@ -6,7 +6,7 @@ project_name = "arday_zone"
 environment  = "dev"
 
 ##--Networking Vars
-access_ip   = "0.0.0.0/0"
+access_ip = "0.0.0.0/0"
 
 bucketnames = "devops-general-roble"
 # tags = "devenv"

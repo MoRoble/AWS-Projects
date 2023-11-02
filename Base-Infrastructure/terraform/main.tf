@@ -26,8 +26,13 @@ module "cloud_VPC" {
   network_sg      = local.select_sg
   db_subnet_group = "true"
   envs            = "on_cloud_arday"
-  environment = var.environment
-  project_name = var.project_name
+  environment     = var.environment
+  project_name    = var.project_name
+  # sn-azA = [
+  #   "aws_subnet.arday_app_sn[0].id",
+  #   "aws_subnet.arday_db_sn[0].id"
+  # ]
+
 
 }
 
