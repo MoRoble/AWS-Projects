@@ -80,6 +80,7 @@ resource "aws_default_route_table" "private_rt" {
   }
 }
 
+## Security Group
 resource "aws_security_group" "arday-sg" {
   for_each    = var.network_sg
   name        = each.value.name
@@ -91,6 +92,7 @@ resource "aws_security_group" "arday-sg" {
     for_each = each.value.ingress
     content {
       from_port   = ingress.value.from
+      description = ingress.value.desc
       to_port     = ingress.value.to
       protocol    = ingress.value.protocol
       cidr_blocks = ingress.value.cidr_blocks
@@ -103,6 +105,10 @@ resource "aws_security_group" "arday-sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.project_name}-${var.environment}-sg"
   }
 }
 
@@ -145,10 +151,11 @@ resource "aws_subnet" "arday_db_sn" {
 }
 
 resource "aws_db_subnet_group" "rds_sng" {
-  count      = var.db_subnet_group == true ? 1 : 0
-  name       = "rds_subnetgroup"
-  subnet_ids = aws_subnet.arday_db_sn.*.id
+  count       = var.db_subnet_group == true ? 1 : 0
+  name        = "rds-db_subnetgroup"
+  subnet_ids  = aws_subnet.arday_db_sn.*.id
+  description = "Subnets for database instances"
   tags = {
-    name = "db-sng"
+    name = "Arday-db-sng"
   }
 }

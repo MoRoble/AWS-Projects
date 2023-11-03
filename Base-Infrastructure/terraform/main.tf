@@ -15,7 +15,7 @@ module "cloud_VPC" {
   arday-pvt-rt    = "cloud-pvt-rt"
   role_name       = var.role_name
   vpc_cidr        = local.vpc_cidr
-  pub_sn_count    = 2
+  pub_sn_count    = 3
   app_sn_count    = 3 #var.app_account
   db_sn_count     = 3
   pub_cidrs       = [for i in range(4) : cidrsubnet(local.vpc_cidr, 4, i)]
@@ -134,6 +134,7 @@ module "cloud_VPC" {
 #   dbuser                 = var.db["user"]
 #   dbpassword             = var.db["password"]
 #   db_identifier          = "arday-db-id"
+#   snapshot_identifier    = "arday-ecs-final-snapshot"
 #   skip_db_snapshot       = true
 #   db_subnet_group_name   = module.cloud_VPC.db_subnet_group_name[0]
 #   vpc_security_group_ids = module.cloud_VPC.db_security_group

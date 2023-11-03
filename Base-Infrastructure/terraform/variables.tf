@@ -26,6 +26,7 @@ variable "peer_owner_id" {}
 
 
 
+
 variable "role_name" {
   default = "dev-wp"
 }
@@ -62,20 +63,20 @@ variable "prod_user" {
 #-------database variables
 
 variable "db" {}
-variable "dbname" {
-  type = string
-}
-variable "dbuser" {
-  type = string
-}
-variable "dbpassword" {
-  type      = string
-  sensitive = true
-}
-variable "dbrootpassword" {
-  type      = string
-  sensitive = true
-}
+# variable "dbname" {
+#   type = string
+# }
+# variable "dbuser" {
+#   type = string
+# }
+# variable "dbpassword" {
+#   type      = string
+#   sensitive = true
+# }
+# variable "dbrootpassword" {
+#   type      = string
+#   sensitive = true
+# }
 variable "devtags" {
   type = map(any)
 }

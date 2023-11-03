@@ -3,18 +3,42 @@ locals {
 }
 
 
+
 locals {
   select_sg = {
     ec2_sg = {
-      name        = "arday-main-sg"
-      description = "Arday EC2 main public open Security group"
+      name        = "arday-open-sg"
+      description = "Arday EC2 public open Security group"
       ingress = {
         all = {
+          desc        = "Open all ports"
           from        = 0
           to          = 0
           protocol    = "-1"
           cidr_blocks = [var.access_ip]
         }
+
+      }
+    }
+    alb_sg = {
+      name        = "ALB-SG"
+      description = "enable HTTP/S access on port 80/443"
+      ingress = {
+        http = {
+          desc        = "http access"
+          from        = 80
+          to          = 80
+          protocol    = "tcp"
+          cidr_blocks = [var.access_ip]
+        }
+        https = {
+          desc        = "https access"
+          from        = 443
+          to          = 443
+          protocol    = "tcp"
+          cidr_blocks = [var.access_ip]
+        }
+
       }
     }
     wordpress = {
@@ -22,19 +46,56 @@ locals {
       description = "Dev wordpress Security group"
       ingress = {
         ssh = {
-          description = "Allow SSH IPv4 Trafficoos"
+          desc        = "Allow SSH IPv4 Trafficoos"
           from        = 22
           to          = 22
           protocol    = "tcp"
           cidr_blocks = [var.access_ip]
         }
         http = {
-          description = "Allow http IPv4 traffic"
+          desc        = "Allow http IPv4 traffic"
           from        = 80
           to          = 80
           protocol    = "tcp"
           cidr_blocks = ["0.0.0.0/0"]
         }
+
+      }
+    }
+    bastion = {
+      name        = "Bastion SG"
+      description = "enable SSH access on port 22 for Bastion EC2"
+      ingress = {
+        ssh = {
+          desc        = "allow SSH access"
+          from        = 22
+          to          = 22
+          protocol    = "tcp"
+          cidr_blocks = [var.access_ip] #you can allow only your IP to make more secure
+        }
+
+      }
+    }
+    app_server = {
+      name        = "App Server SG"
+      description = "enable http/s access on 80/443 via ALB SG"
+      ingress = {
+        http = {
+          desc     = "Allow http locally"
+          from     = 80
+          to       = 80
+          protocol = "tcp"
+          # security_group_id = [aws_security_group.arda]
+          cidr_blocks = [local.vpc_cidr]
+        }
+        https = {
+          desc        = "allow https locally"
+          from        = 443
+          to          = 443
+          protocol    = "tcp"
+          cidr_blocks = [local.vpc_cidr]
+        }
+
       }
     }
     database = {
@@ -42,12 +103,13 @@ locals {
       description = "Dev DB Security access"
       ingress = {
         mysql = {
-          description = "Allow MySQL IN"
+          desc        = "Allow MySQL from App-server SG & Bastion SG"
           from        = 3306
           to          = 3306
           protocol    = "tcp"
           cidr_blocks = [local.vpc_cidr]
         }
+
       }
     }
     efs = {
@@ -55,12 +117,13 @@ locals {
       description = "Dev EFS Security Group"
       ingress = {
         nfs = {
-          description = "Allow NFS/EFS IPv4 IN"
+          desc        = "Allow NFS/EFS IPv4 IN"
           from        = 2049
           to          = 2049
           protocol    = "tcp"
           cidr_blocks = [local.vpc_cidr]
         }
+
       }
     }
   }

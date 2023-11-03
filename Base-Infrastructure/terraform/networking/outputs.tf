@@ -11,6 +11,7 @@ output "db_subnet_group_name" {
 #   value = [aws_security_group.["dev_sg"].id]
 # }
 
+##--- Security Group outputs
 output "instance_sg" {
   description = "select ec2 security group from locals variable in the root file"
   value       = [aws_security_group.arday-sg["ec2_sg"].id]
@@ -23,6 +24,10 @@ output "db_security_group" {
 output "security_group_wordpress" {
   value = [aws_security_group.arday-sg["wordpress"].id]
 }
+
+# output "alb_sg" {
+#   value = [aws_security_group.arday-sg["alb_sg"].id]
+# }
 
 output "arday_peer_pub_rt" {
   value = aws_route_table.arday_pub_rt

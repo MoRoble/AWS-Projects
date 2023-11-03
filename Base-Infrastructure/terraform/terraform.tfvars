@@ -30,10 +30,10 @@ db = {
   rootpassword = "p3rsonalPlu5"
 }
 
-dbname         = "barxada"
-dbuser         = "loki"
-dbpassword     = "h0d4nF!l35"
-dbrootpassword = "p3rsonalPlu5"
+# dbname         = "barxada"
+# dbuser         = "loki"
+# dbpassword     = "h0d4nF!l35"
+# dbrootpassword = "p3rsonalPlu5"
 devtags = {
   environment  = "Development"
   BusinessUnit = "Tech" #to be confirmed

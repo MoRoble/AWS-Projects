@@ -8,4 +8,8 @@ variable "vpc_security_group_ids" {}
 variable "db_subnet_group_name" {}
 variable "db_engine_version" {}
 variable "db_identifier" {}
+variable "snapshot_identifier" {
+  description = "Database snapshot name"
+  type        = string
+}
 variable "skip_db_snapshot" {}

@@ -4,6 +4,8 @@ variable "vpc_name" {
   type = string
 }
 
+
+
 variable "vpc_cidr" {
   description = "vpc cidr block"
   type        = string
