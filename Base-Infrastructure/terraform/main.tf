@@ -33,7 +33,6 @@ module "cloud_VPC" {
   #   "aws_subnet.arday_db_sn[0].id"
   # ]
 
-
 }
 
 # module "onprem_VPC" {
@@ -60,29 +59,60 @@ module "cloud_VPC" {
 # }
 
 
-# module "compute" {
-#   source         = "./compute"
-#   instance-sg    = module.cloud_VPC.instance_sg
-#   pub_sn         = module.cloud_VPC.public_subnets
-#   instance_count = 2
-#   instance_type  = "t3.micro"
-#   vol_size       = "30"
-#   key_name1  = "arday-cloud" #-key created on cloud side
-#   host_os    = var.host_os
-#   devtags    = var.devtags
-#   # dbname     = var.dbname
-#   # dbuser     = var.dbuser
-#   # dbpassword = var.dbpassword
-#   # instance_profile = module.ec2_profile
-#   user_data_file = file("${var.file_path["user_data"]}")
-#   # user_data_file = file("./compute/userdata_wp.tpl")
-#   key-file    = file("${var.file_path["key-file"]}")
-#   iam_role    = module.ec2_profile.ec2_profile_name
-#   server-name = "clooud-server_"
+module "compute" {
+  source         = "./compute"
+  instance-sg    = module.cloud_VPC.instance_sg
+  pub_sn         = module.cloud_VPC.ec2-pub-sn
+  instance_count = 2
+  instance_type  = "t3.micro"
+  vol_size       = "30"
+  key_name1      = "arday-cloud" #-key created on cloud side
+  host_os        = var.host_os
+  devtags        = var.devtags
+  # dbname     = var.dbname
+  # dbuser     = var.dbuser
+  # dbpassword = var.dbpassword
+  # instance_profile = module.ec2_profile
+  user_data_file = file("${var.file_path["user_data"]}")
+  # user_data_file = file("./compute/userdata_wp.tpl")
+  pub-key-file = file("${var.file_path["key-file"]}")
+  # iam_role    = module.ec2_profile.ec2_profile_name
+  server-name = "clooud-server_"
+  lb-tg-arn   = module.lb.lb-tg-arn
 
-# }
+}
 
+#### DataBase module is ready
+module "database" {
+  source                 = "./database"
+  db_engine_version      = "10.6.11"
+  db_instance_class      = "db.t3.micro"
+  dbname                 = var.db["name"]
+  dbuser                 = var.db["user"]
+  dbpassword             = var.db["password"]
+  db_identifier          = "arday-db-id"
+  snapshot_identifier    = "arday-ecs-final-snapshot"
+  skip_db_snapshot       = true
+  db_subnet_group_name   = module.cloud_VPC.db_subnet_group_name[0]
+  vpc_security_group_ids = module.cloud_VPC.db_security_group
+}
 
+####----- load balance
+module "lb" {
+  source = "./lb"
+  # lb_count = 1
+  lb_sg                   = module.cloud_VPC.alb_open_sg
+  lb_pub_sn               = module.cloud_VPC.alb_pub_subnets
+  tg_port                 = 80 #8000 to reach instance port 8000
+  tg_protocol             = "HTTP"
+  vpc_id                  = module.cloud_VPC.vpc_id
+  elb_healthy_threshold   = 2
+  elb_unhealthy_threshold = 2
+  elb_timeout             = 3
+  elb_interval            = 30
+  listener_port           = 80 # to access publicly #8000 for k8s
+  listener_protocol       = "HTTP"
+}
 
 
 ### Establish private connectivity between VPC's
@@ -125,39 +155,6 @@ module "cloud_VPC" {
 #   source = "./iam-role"
 #   # ec2_profile = "arday_ec2_role_profile"
 # }
-
-# module "database" {
-#   source                 = "./database"
-#   db_engine_version      = "10.6.11"
-#   db_instance_class      = "db.t3.micro"
-#   dbname                 = var.db["name"]
-#   dbuser                 = var.db["user"]
-#   dbpassword             = var.db["password"]
-#   db_identifier          = "arday-db-id"
-#   snapshot_identifier    = "arday-ecs-final-snapshot"
-#   skip_db_snapshot       = true
-#   db_subnet_group_name   = module.cloud_VPC.db_subnet_group_name[0]
-#   vpc_security_group_ids = module.cloud_VPC.db_security_group
-# }
-
-
-
-# module "lb" {
-#   source = "./lb"
-#   # lb_count = 1
-#   lb_security_group       = module.networking.security_group_wordpress
-#   lb_public_subnets       = module.networking.public_subnets
-#   tg_port                 = 8000
-#   tg_protocol             = "HTTP"
-#   vpc_id                  = module.networking.vpc_id
-#   elb_healthy_threshold   = 2
-#   elb_unhealthy_threshold = 2
-#   elb_timeout             = 3
-#   elb_interval            = 30
-#   listener_port           = 8000
-#   listener_protocol       = "HTTP"
-# }
-
 
 
 # module "iam" {

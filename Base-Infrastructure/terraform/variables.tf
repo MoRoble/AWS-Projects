@@ -25,13 +25,12 @@ variable "access_ip" {
 variable "peer_owner_id" {}
 
 
-
-
+###--- EC2 vars
 variable "role_name" {
   default = "dev-wp"
 }
-
 variable "file_path" {}
+
 
 variable "app_account" {
   type    = number
@@ -41,7 +40,6 @@ variable "bucketnames" {}
 
 
 #####---- IAM user varaiables
-
 variable "devop_users" {
   type        = list(string)
   description = "Name of users to be created in  devops group"

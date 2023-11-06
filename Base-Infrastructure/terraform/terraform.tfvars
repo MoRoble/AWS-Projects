@@ -17,7 +17,8 @@ bucketnames = "devops-general-roble"
 file_path = {
   user_data        = "./compute/userdata_wp.tpl"
   onprem_user_data = "./compute/wordpress_install.sh"
-  key-file         = "~/Documents/Dev/keys/devenv.pub"
+  # key-file         = "~/Documents/Dev/keys/devenv.pub"
+  key-file = "~/.ssh/arday-mac16.pub"
 
 }
 

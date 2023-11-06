@@ -151,10 +151,12 @@ resource "aws_subnet" "arday_db_sn" {
 }
 
 resource "aws_db_subnet_group" "rds_sng" {
-  count       = var.db_subnet_group == true ? 1 : 0
+  count = var.db_subnet_group == true ? 1 : 0
+  # count = var.subnet_group_number
   name        = "rds-db_subnetgroup"
-  subnet_ids  = aws_subnet.arday_db_sn.*.id
-  description = "Subnets for database instances"
+  subnet_ids  = aws_subnet.arday_db_sn.*.id #rundom subnet
+  description = "Subnet group for database instances"
+
   tags = {
     name = "Arday-db-sng"
   }

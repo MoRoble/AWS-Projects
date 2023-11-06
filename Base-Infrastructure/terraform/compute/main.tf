@@ -30,7 +30,7 @@ resource "aws_key_pair" "pub_key" {
   # key_name = "arday-key-nc"
   # public_key = aws_ssm_parameter.key_path.value
   # public_key = file("C:/Users/M ROBLE/.ssh/arday.pub")
-  public_key = var.key-file
+  public_key = var.pub-key-file
 }
 
 
@@ -51,7 +51,7 @@ resource "aws_instance" "arday_ec2" {
   vpc_security_group_ids = var.instance-sg
   subnet_id              = var.pub_sn[count.index]
   # iam_instance_profile = "ec2_profile"
-  iam_instance_profile = var.iam_role
+  # iam_instance_profile = var.iam_role
   # user_data = file("./compute/userdata.tpl")
   user_data = var.user_data_file
   /*user_data = templatefile("${path.module}${var.user_data_file}", {
@@ -78,3 +78,10 @@ resource "aws_instance" "arday_ec2" {
 #   name = var.instance_profile
 #   role = var.iam_role
 # }
+
+resource "aws_lb_target_group_attachment" "arday-tg-attach" {
+  count            = var.instance_count
+  target_group_arn = var.lb-tg-arn
+  target_id        = aws_instance.arday_ec2[count.index].id
+  port             = 8000 #map instance port directly
+}

@@ -99,7 +99,7 @@ locals {
       }
     }
     database = {
-      name        = "dev-db-sg"
+      name        = "${var.project_name}-${var.environment}-db-sg"
       description = "Dev DB Security access"
       ingress = {
         mysql = {

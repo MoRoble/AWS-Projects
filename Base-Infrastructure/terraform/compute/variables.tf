@@ -9,14 +9,15 @@ variable "key_name1" {
   # default = "new_key"
 }
 variable "server-name" {}
-variable "key-file" {}
+variable "pub-key-file" {}
 variable "user_data_file" {}
 
-variable "iam_role" {}
+# variable "iam_role" {}
 variable "host_os" {}
 variable "devtags" {
   type = map(any)
 }
+variable "lb-tg-arn" {}
 
 # variable "dbname" {}
 # variable "dbuser" {}
