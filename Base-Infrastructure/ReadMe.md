@@ -25,8 +25,18 @@ Now that we've established the importance of a base infrastructure and the power
 
 4. **Database Deployments**: Set up a database instance using Amazon RDS or Amazon DynamoDB. Define your database infrastructure as code, making it easier to maintain and scale.
 
-By having a base infrastructure in place, you can deploy these projects with confidence, knowing that the underlying architecture is well-structured and adaptable to future innovations and technologies.
+By establishing all these infrastructure setups, you're prepared to enter on a journey of creativity, cloud-based projects,  brainstorming ideas, and embracing challenges. Once you've listed your creative concepts, it's essential to be prepared for the list of challenges that may arise after setting up your base infrastructure. These challenges are diverse and include:
 
-In conclusion, a well-designed base infrastructure is the cornerstone for DevOps success. Using Terraform modules in an AWS environment provides flexibility, scalability, and a foundation for continuous innovation. With a robust base infrastructure, you can focus on developing and deploying projects that matter, knowing that you have a solid framework to support your endeavors. So, let's get started and build your base infrastructure to get moving your DevOps journey forward.
+* **Containerization:** Implementing container technologies to efficiently manage and scale your applications.
+* **Building Your Landing Page:** Crafting an engaging and user-friendly landing page to represent your project or business.
+* **Configuring Ansible:** Setting up Ansible to automate configuration management and streamline operations.
+* **Configuring CI/CD:** Establishing a robust Continuous Integration and Continuous Deployment pipeline for your software projects.
+* **HTML & CSS Styling:** Enhancing your skills in HTML and CSS to create visually appealing and functional web interfaces.
+* **Leveraging Lambda & Python:** Utilize serverless computing with AWS Lambda and Python for efficient and cost-effective execution of functions.
+* **Linux Configurations:** Fine-tuning Linux configurations and optimizing server performance.
+
+These challenges will ultimately lead to the deployment of both static and dynamic web applications on AWS using Terraform. This infrastructure will be of use in hosting a dynamic e-commerce website on AWS, taking your cloud-based projects to new heights.
+
+In conclusion, a well-designed base infrastructure is the foundation for DevOps success. Using Terraform modules in an AWS environment provides flexibility, scalability, and a keystone for continuous innovation. With a robust base infrastructure, you can focus on developing and deploying projects that matter, knowing that you have a solid framework to support your endeavors. So, let's get started and build your base infrastructure to get moving your DevOps journey forward.
 
 Go back to [my domain](https://roble.cloud/portfolio)
