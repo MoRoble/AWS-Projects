@@ -1,4 +1,3 @@
-<<k
 #!/bin/bash
 sudo apt-get update -y &&
 sudo apt-get install -y \
@@ -13,4 +12,6 @@ sudo apt-get update -y &&
 sudo sudo apt-get install docker-ce docker-ce-cli containerd.io -y &&
 sudo usermod -aG docker ubuntu
 #cd ~/.ssh && cp authorized_keys devenv
+<<k
+sudo su - ubuntu # to switch user without password
 k

@@ -50,8 +50,8 @@ resource "aws_instance" "arday_ec2" {
   key_name               = var.key_name1
   vpc_security_group_ids = var.instance-sg
   subnet_id              = var.pub_sn[count.index]
-  # iam_instance_profile = "ec2_profile"
-  # iam_instance_profile = var.iam_role
+  iam_instance_profile   = var.iam_role
+  # iam_instance_profile = aws_iam_instance_profile.arday_ec2_profile.name
   # user_data = file("./compute/userdata.tpl")
   user_data = var.user_data_file
   /*user_data = templatefile("${path.module}${var.user_data_file}", {
@@ -72,13 +72,41 @@ resource "aws_instance" "arday_ec2" {
 }
 
 
-## intance profile
-
-# resource "aws_iam_instance_profile" "dev_ec2_profile" {
-#   name = var.instance_profile
-#   role = var.iam_role
+# ## intance profile
+# resource "aws_iam_instance_profile" "arday_ec2_profile" {
+#   name = "Arday-zone-ec2_profile"
+#   role = aws_iam_role.ec2_ssm_role.name
 # }
 
+# resource "aws_iam_role" "ec2_ssm_role" {
+#   name = "arday-SSM-role"
+#   assume_role_policy = jsonencode({
+#     "Version" : "2012-10-17",
+#     "Statement" : [
+#       {
+#         "Effect" : "Allow",
+#         "Principal" : {
+#           "Service" : "ec2.amazonaws.com"
+#         },
+#         "Action" : "sts:AssumeRole"
+#       }
+#     ]
+#   })
+#   tags = {
+#     "Name" = "ec2-SSM-role-assume"
+#   }
+# }
+
+# data "aws_iam_policy" "ec2-ssm-policy-arn" {
+#   arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+# }
+
+# resource "aws_iam_role_policy_attachment" "ssmCoreAttach" {
+#   role       = aws_iam_role.ec2_ssm_role.name
+#   policy_arn = data.aws_iam_policy.ec2-ssm-policy-arn.arn
+# }
+
+####--- Load Balance
 resource "aws_lb_target_group_attachment" "arday-tg-attach" {
   count            = var.instance_count
   target_group_arn = var.lb-tg-arn

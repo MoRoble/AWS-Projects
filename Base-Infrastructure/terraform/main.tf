@@ -73,29 +73,35 @@ module "compute" {
   # dbuser     = var.dbuser
   # dbpassword = var.dbpassword
   # instance_profile = module.ec2_profile
-  user_data_file = file("${var.file_path["user_data"]}")
+  user_data_file = file("${var.file_path["userdata_basic"]}")
   # user_data_file = file("./compute/userdata_wp.tpl")
   pub-key-file = file("${var.file_path["key-file"]}")
-  # iam_role    = module.ec2_profile.ec2_profile_name
-  server-name = "clooud-server_"
-  lb-tg-arn   = module.lb.lb-tg-arn
+  iam_role     = module.ec2_profile.ec2_profile_name
+  server-name  = "clooud-server_"
+  lb-tg-arn    = module.lb.lb-tg-arn
 
+}
+
+###---- instance profile
+module "ec2_profile" {
+  source = "./iam-role"
+  # ec2_profile = "arday_ec2_role_profile"
 }
 
 #### DataBase module is ready
-module "database" {
-  source                 = "./database"
-  db_engine_version      = "10.6.11"
-  db_instance_class      = "db.t3.micro"
-  dbname                 = var.db["name"]
-  dbuser                 = var.db["user"]
-  dbpassword             = var.db["password"]
-  db_identifier          = "arday-db-id"
-  snapshot_identifier    = "arday-ecs-final-snapshot"
-  skip_db_snapshot       = true
-  db_subnet_group_name   = module.cloud_VPC.db_subnet_group_name[0]
-  vpc_security_group_ids = module.cloud_VPC.db_security_group
-}
+# module "database" {
+#   source                 = "./database"
+#   db_engine_version      = "10.6.11"
+#   db_instance_class      = "db.t3.micro"
+#   dbname                 = var.db["name"]
+#   dbuser                 = var.db["user"]
+#   dbpassword             = var.db["password"]
+#   db_identifier          = "arday-db-id"
+#   snapshot_identifier    = "arday-ecs-final-snapshot"
+#   skip_db_snapshot       = true
+#   db_subnet_group_name   = module.cloud_VPC.db_subnet_group_name[0]
+#   vpc_security_group_ids = module.cloud_VPC.db_security_group
+# }
 
 ####----- load balance
 module "lb" {
@@ -151,10 +157,6 @@ module "lb" {
 # }
 
 
-# module "ec2_profile" {
-#   source = "./iam-role"
-#   # ec2_profile = "arday_ec2_role_profile"
-# }
 
 
 # module "iam" {

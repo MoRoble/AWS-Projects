@@ -12,7 +12,7 @@ variable "server-name" {}
 variable "pub-key-file" {}
 variable "user_data_file" {}
 
-# variable "iam_role" {}
+variable "iam_role" {}
 variable "host_os" {}
 variable "devtags" {
   type = map(any)
