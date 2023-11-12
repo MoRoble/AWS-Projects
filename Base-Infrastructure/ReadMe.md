@@ -37,6 +37,8 @@ By establishing all these infrastructure setups, you're prepared to enter on a j
 
 These challenges will ultimately lead to the deployment of both static and dynamic web applications on AWS using Terraform. This infrastructure will be of use in hosting a dynamic e-commerce website on AWS, taking your cloud-based projects to new heights.
 
+After setting up your resources with Terraform, if you encounter an error or are unsure about misused arguments, do a reverse engineering. Navigate to the AWS Management Console, backtrack to the specific resource causing the issue. Any configurations you found in the console will have corresponding code in the Terraform repository. Return to Terraform and identify the arguments that align with those settings.
+
 In conclusion, a well-designed base infrastructure is the foundation for DevOps success. Using Terraform modules in an AWS environment provides flexibility, scalability, and a keystone for continuous innovation. With a robust base infrastructure, you can focus on developing and deploying projects that matter, knowing that you have a solid framework to support your endeavors. So, let's get started and build your base infrastructure to get moving your DevOps journey forward.
 
 Go back to [my domain](https://roble.cloud/portfolio)
