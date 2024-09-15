@@ -4,8 +4,7 @@ Creating a solid base infrastructure is essential for any DevOps engineer, espec
 Imagine you have a brilliant new idea or project you want to develop in the cloud. Starting from scratch every time can be time-consuming and may not be the most efficient approach. A base infrastructure provides a pre-configured environment that you can easily replicate and adapt to meet the specific needs of your projects. It simplifies the process of testing and deploying new ideas, allowing you to focus on innovation rather than infrastructure setup.
 Here, we'll discuss key components of this infrastructure, including a Virtual Private Cloud (VPC), RDS, EC2 instances across Availability Zones (AZs), a load balancer, and options for storing terraform backend (state file) in either S3 or Terraform Cloud.
 
-![Base-infra](https://github.com/MoRoble/AWS-Projects/blob/cf7c85a57b2579b5d6403eeb71976b0a687b9860/Base-Infrastructure/Base-infrastructure.svg)
-![bas-cloud-app](https://github.com/MoRoble/AWS-Projects/blob/c61bfc343e963c432b8e74d7a0733f0522886b97/Base-Infrastructure/base-setup-cloud-app.svg)
+![Base-cloud-app-infrastructure](https://github.com/MoRoble/AWS-Projects/blob/0592cce8e4d2107963bbc63e2f1498c7e9aa4217/Base-Infrastructure/cloud-app-Page-1.svg)
 ## Terraform Modules - The Building Blocks
 
 Terraform is an infrastructure-as-code tool that allows us to define and provision cloud infrastructure using declarative configurations. One of its most powerful features is the use of modules. Modules in Terraform allow us to encapsulate infrastructure components into reusable and shareable units, making it easier to maintain and extend our infrastructure.
