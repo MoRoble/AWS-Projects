@@ -22,6 +22,8 @@ Amazon ECS (Elastic Container Service) provides a managed environment for runnin
 - **Simplified Scaling**: Fargate automatically scales your containers based on demand, making it easier to handle varying workloads.
 - **Pay-as-You-Go**: You pay only for the resources your containers use, which can be more cost-effective for certain workloads.
 
+![image](https://github.com/MoRoble/AWS-Projects/blob/main/Cloud-Native-App/cloud-app.svg)
+
 #### Choosing Between Fargate and EC2
 
 When defining your ECS task, you can choose between two launch types: **Fargate** and **EC2**.
@@ -103,6 +105,9 @@ I used **Docker** to create and manage container images. Docker capabilities inc
 - **Orchestration**: Integrating with orchestration tools like Kubernetes and ECS for managing containerized applications at scale.
 
 ### Security Group Setup
+
+![image](https://github.com/MoRoble/AWS-Projects/blob/ca7551475555a17eaf1a50d8a3a9b8c2f81da900/Cloud-Native-App/cloud-app-sg1.png)
+
 Configuring security groups involves matching and managing ports and resources, which requires numerous trials to ensure the infrastructure is secure enough for public use. Here are the security groups we will create for this project:
 
 1. **ALB Security Group**
