@@ -22,7 +22,7 @@ Amazon ECS (Elastic Container Service) provides a managed environment for runnin
 - **Simplified Scaling**: Fargate automatically scales your containers based on demand, making it easier to handle varying workloads.
 - **Pay-as-You-Go**: You pay only for the resources your containers use, which can be more cost-effective for certain workloads.
 
-![image](https://github.com/MoRoble/AWS-Projects/blob/main/Cloud-Native-App/cloud-app.svg)
+![image](https://github.com/MoRoble/AWS-Projects/blob/b65580b71e0588dc7a1d6b7e1118b31a4ce26e6f/Cloud-Native-App/cloud-app-Pipeline-diagram.png)
 
 #### Choosing Between Fargate and EC2
 
