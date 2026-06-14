@@ -1,5 +1,5 @@
 ## Multi-Site Infrastructure VPN
-### Connecting a monitoring site to an infrastructure site over Site-to-Site VPN
+#### Connecting a monitoring site to an infrastructure site over Site-to-Site VPN
 
 > **Version 2 of my Hodan School Site-to-Site VPN.** In 2021, I connected Hodan Secondary School's
 > on-premises network to AWS over a static VPN and demonstrated it with a shared EFS file system
@@ -10,7 +10,7 @@
 
 ---
 
-## Table of Contents
+### Table of Contents
 
 - [Multi-Site Infrastructure VPN](#multi-site-infrastructure-vpn)
   - [Connecting a monitoring site to an infrastructure site over Site-to-Site VPN](#connecting-a-monitoring-site-to-an-infrastructure-site-over-site-to-site-vpn)
@@ -34,7 +34,7 @@
 
 ---
 
-## Why a version 2
+### Why a version 2
 
 The 2021 project did its job, it proved I could stand up a hybrid network and move data between a
 school's on-prem site and AWS. But it was a product of its time: consumer networking hardware, a
@@ -49,7 +49,7 @@ same hybrid-connectivity foundation, a much more capable build on top.
 
 ---
 
-## What v1 was (2021)
+### What v1 was (2021)
 
 - **Scenario:** connect Hodan School's on-prem network to AWS and let staff share files across the
   link.
@@ -66,7 +66,7 @@ It still lives on the repo's main page as reference.
 
 ---
 
-## What v2 is (2026)
+### What v2 is (2026)
 
 Same hybrid foundation, rebuilt and extended:
 
@@ -82,7 +82,7 @@ Same hybrid foundation, rebuilt and extended:
 
 ---
 
-## The scenario
+### The scenario
 
 Hodan School has moved its academic systems, student portal, results service, library catalogue,
 internal APIs into AWS. The school's IT team still works from the on-prem data centre and needs
@@ -96,7 +96,7 @@ inside the AWS VPCs. One dashboard, on-prem, covering both worlds.
 
 ---
 
-## Architecture
+### Architecture
 
 **On-premises `Hodan-DC` (simulated in `eu-north-1` for the lab)**
 
@@ -124,7 +124,7 @@ inside the AWS VPCs. One dashboard, on-prem, covering both worlds.
 
 ---
 
-## Why monitoring instead of file sharing
+### Why monitoring instead of file sharing
 
 In v1 I used EFS to make the same files appear on both sides a simple, visual way to prove the
 tunnel carried real traffic. In v2 the cross-site workload is **observability data**: metrics from
@@ -137,7 +137,7 @@ workloads move to the cloud is exactly the kind of hybrid requirement these VPNs
 
 ---
 
-## Stack
+### Stack
 
 | Layer | Tooling |
 |---|---|
@@ -152,7 +152,7 @@ workloads move to the cloud is exactly the kind of hybrid requirement these VPNs
 
 ---
 
-## How the monitoring flows across the VPN
+### How the monitoring flows across the VPN
 
 ```
 [ AWS workloads (agents) ]  -->  [ Zabbix proxy (in HodaN102-vpc) ]  --batched/buffered-->
@@ -183,7 +183,7 @@ traffic**, and **`source_dest_check = false`** on the router. CIDRs must not ove
 
 ---
 
-## Why a Transit Gateway here
+### Why a Transit Gateway here
 
 v1 used **VPC peering**, which is fine for two VPCs but doesn't scale, peering is non-transitive, so
 N fully-connected VPCs need N×(N-1)/2 connections. v2 uses a **Transit Gateway** as the hub: every
@@ -196,7 +196,7 @@ does, so the VPC-side routes to the on-prem CIDR are added explicitly.)
 
 ---
 
-## Tunnels and failover
+### Tunnels and failover
 
 The VPN runs **two tunnels**; **Tunnel 1 (preferred)** and **Tunnel 2 (backup)**, each with its own
 AWS outside IP and inside `/30`. Because this is a **static** VPN, the AWS→on-prem direction
@@ -206,7 +206,7 @@ setup here gives AWS-side redundancy and is sufficient for the monitoring worklo
 
 ---
 
-## Key concepts I locked down building this
+### Key concepts I locked down building this
 
 Rebuilding the project pushed me to properly understand the networking underneath, not just click
 through it:
@@ -227,7 +227,7 @@ through it:
 
 ---
 
-## Repository structure
+### Repository structure
 
 ```
 Site-to-Site/
@@ -254,7 +254,7 @@ The repo's main page keeps the original project untouched; everything new lives 
 
 ---
 
-## How to deploy
+### How to deploy
 
 ```bash
 # From zabbix-s2s-vpn/infra/terragrunt
@@ -272,7 +272,7 @@ first, then `terragrunt destroy`.
 
 ---
 
-## Walkthrough (manual steps)
+### Walkthrough (manual steps)
 
 Most of the infrastructure is provisioned by the Terraform/Terragrunt code in
 [How to deploy](#how-to-deploy). The remaining hands-on parts, creating the VPN gateway objects,
@@ -287,7 +287,7 @@ cleanup.
 
 ---
 
-## Diagram
+### Diagram
 
 The v2 architecture diagram lives in `diagrams/`. **Note:** the current draft
 (`HoDaN-VPN-Demo 1`) is a work-in-progress placeholder, it still shows a FortiGate 200F router and
@@ -299,7 +299,7 @@ Zabbix-proxy-per-VPC structure shown there are accurate.
 
 ---
 
-## What I'd do next
+### What I'd do next
 
 - Add **alerting** (Zabbix → email/Slack) so the IT team is paged on academic-service issues, not
   just dashboards.
