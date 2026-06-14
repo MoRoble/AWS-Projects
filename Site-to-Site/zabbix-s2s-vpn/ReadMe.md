@@ -295,6 +295,8 @@ a CFN-deployed proxy. This build actually uses **strongSwan** and **Terraform/Te
 router icon and the "CFN" label will be updated in the next revision. The TGW hub, dual tunnels, and
 Zabbix-proxy-per-VPC structure shown there are accurate.
 
+![Hodan-Monitoring](https://github.com/MoRoble/AWS-Projects/blob/main/Site-to-Site/zabbix-s2s-vpn/hodan-demo-1-FortiGate.drawio.png)
+
 ---
 
 ## What I'd do next
