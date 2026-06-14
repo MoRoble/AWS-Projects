@@ -4,7 +4,7 @@
 > **Version 2 of my Hodan School Site-to-Site VPN.** In 2021, I connected Hodan Secondary School's
 > on-premises network to AWS over a static VPN and demonstrated it with a shared EFS file system
 > visible on both sides. This v2 rebuild keeps the same hybrid foundation but modernises the whole
-> stack — **strongSwan** as the on-prem router, **Terraform + Terragrunt** for the infrastructure,
+> stack **strongSwan** as the on-prem router, **Terraform + Terragrunt** for the infrastructure,
 > a **Transit Gateway** hub, and an **on-prem Zabbix server monitoring containerised academic
 > workloads running in AWS**.
 
@@ -98,7 +98,7 @@ inside the AWS VPCs. One dashboard, on-prem, covering both worlds.
 
 ## Architecture
 
-**On-premises — `Hodan-DC` (simulated in `eu-north-1` for the lab)**
+**On-premises `Hodan-DC` (simulated in `eu-north-1` for the lab)**
 
 - A **strongSwan** router (Ubuntu) terminates the IPSec VPN — replacing the v1 Unifi USG.
 - The **Zabbix server** (with its database and web UI) runs on-prem; this is the single source of
@@ -185,7 +185,7 @@ traffic**, and **`source_dest_check = false`** on the router. CIDRs must not ove
 
 ## Why a Transit Gateway here
 
-v1 used **VPC peering**, which is fine for two VPCs but doesn't scale — peering is non-transitive, so
+v1 used **VPC peering**, which is fine for two VPCs but doesn't scale, peering is non-transitive, so
 N fully-connected VPCs need N×(N-1)/2 connections. v2 uses a **Transit Gateway** as the hub: every
 VPC (the monitoring VPC and each workload VPC) attaches once, and the TGW routes between them and the
 VPN. Adding another academic-service VPC later is one new attachment, not a mesh of new peerings. The
@@ -198,7 +198,7 @@ does, so the VPC-side routes to the on-prem CIDR are added explicitly.)
 
 ## Tunnels and failover
 
-The VPN runs **two tunnels** — **Tunnel 1 (preferred)** and **Tunnel 2 (backup)** — each with its own
+The VPN runs **two tunnels**; **Tunnel 1 (preferred)** and **Tunnel 2 (backup)**, each with its own
 AWS outside IP and inside `/30`. Because this is a **static** VPN, the AWS→on-prem direction
 fails over automatically between tunnels, but on-prem→AWS failover is governed by the router's static
 routing. True automatic two-way failover would need a **dynamic/BGP** VPN; the dual-tunnel static
@@ -211,17 +211,17 @@ setup here gives AWS-side redundancy and is sufficient for the monitoring worklo
 Rebuilding the project pushed me to properly understand the networking underneath, not just click
 through it:
 
-- **Static vs dynamic (BGP) VPN** — both v1 and v2 are static. Static is simple and works on almost
+- **Static vs dynamic (BGP) VPN** both v1 and v2 are static. Static is simple and works on almost
   any router; dynamic/BGP is what you reach for when you need automatic, two-way failover and
   multiple active links.
-- **VGW vs TGW** — a VGW attaches to one VPC and can propagate routes into VPC route tables; a TGW is
+- **VGW vs TGW** a VGW attaches to one VPC and can propagate routes into VPC route tables; a TGW is
   the multi-VPC hub-and-spoke option (no propagation into VPC route tables, but transitive routing
   across many VPCs). With several monitored VPCs, the TGW is the right call.
-- **Single vs dual tunnel** — a single tunnel is already bidirectional and is fine for monitoring
+- **Single vs dual tunnel** a single tunnel is already bidirectional and is fine for monitoring
   traffic; the second tunnel adds AWS-side redundancy.
-- **Route tables & longest-prefix matching** — the most specific route wins; static beats
+- **Route tables & longest-prefix matching** the most specific route wins; static beats
   propagated; routing must exist both ways or TCP silently fails.
-- **The Zabbix proxy pattern** — the single most important scaling decision here. The proxy keeps
+- **The Zabbix proxy pattern** the single most important scaling decision here. The proxy keeps
   monitoring traffic light across the VPN and tolerates tunnel drops by buffering, which is what makes
   a monitoring-over-VPN design production-viable.
 
@@ -231,7 +231,7 @@ through it:
 
 ```
 Site-to-Site/
-├── README.md                     # repo landing — the original 2021 project (kept as-is)
+├── README.md                     # repo landing, the original 2021 project (kept as-is)
 ├── EFS-S2S-diagram.jpg           # original Hodan School diagram
 │
 └── zabbix-s2s-vpn/               # ← this folder: the v2 build
@@ -290,7 +290,7 @@ cleanup.
 ## Diagram
 
 The v2 architecture diagram lives in `diagrams/`. **Note:** the current draft
-(`HoDaN-VPN-Demo - 1`) is a work-in-progress placeholder, it still shows a FortiGate 200F router and
+(`HoDaN-VPN-Demo 1`) is a work-in-progress placeholder, it still shows a FortiGate 200F router and
 a CFN-deployed proxy. This build actually uses **strongSwan** and **Terraform/Terragrunt**, so the
 router icon and the "CFN" label will be updated in the next revision. The TGW hub, dual tunnels, and
 Zabbix-proxy-per-VPC structure shown there are accurate.
